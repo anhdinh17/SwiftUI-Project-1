@@ -25,12 +25,6 @@ struct ExpenseHomeView: View {
             }
             .navigationTitle("Home")
             .navigationDestination(for: ExpenseFolder.self){ folderName in
-                // Go to detail screen
-//                VStack{
-//                    Text("\(folderName.name)")
-//                        .foregroundColor(Color.red)
-//                        .frame(width: .infinity, height: 200)
-//                }
                 DetailedScreenOfExpenses()
             }
             .toolbar {
@@ -41,6 +35,11 @@ struct ExpenseHomeView: View {
                         Image(systemName: "plus")
                     }
                 }
+            }
+        }
+        .onAppear{
+            DataManager.shared.readDataFromDB { folderArray in
+                self.folderArray = folderArray
             }
         }
         .alert("Add Your Expense Object", isPresented: $showAddFolderAlert, actions: {
@@ -56,6 +55,7 @@ struct ExpenseHomeView: View {
                             print("UNABLE TO SAVE TO DATA")
                         }
                     }
+//                    DataManager.shared.testAddData(folderName: folderName)
                 } else {
                     // alert to make users enter name
                 }

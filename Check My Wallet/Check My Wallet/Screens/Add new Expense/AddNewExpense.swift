@@ -13,7 +13,7 @@ struct AddNewExpense: View {
     @Binding var expenseArray: [ExpenseModel]
     @State var nameOfExpense: String = ""
     @State var amountSpent: String = ""
-    @State var dateSpentMoney: Date = Date()
+    @State var dateSpendMoney: Date = Date()
     
     var body: some View {
         VStack {
@@ -30,12 +30,12 @@ struct AddNewExpense: View {
                     .textFieldStyle(PlainTextFieldStyle())
                 
                 DatePicker("Date you spend on",
-                           selection: $dateSpentMoney,
+                           selection: $dateSpendMoney,
                            displayedComponents: .date
                 )
                 
                 Button{
-                    let expenseModel = ExpenseModel(nameOfExpense: nameOfExpense, amoutExpense: amountSpent, dateSpendOn: dateSpentMoney)
+                    let expenseModel = ExpenseModel(nameOfExpense: nameOfExpense, amoutExpense: amountSpent, dateSpendOn: dateSpendMoney)
                     expenseArray.append(expenseModel)
                     self.newItemPresented = false
                 }label: {
