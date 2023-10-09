@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExpenseInfoRow: View {
     let nameOfExpense: String
-    let amountSpent: String
+    let amountSpent: Double
     
     var body: some View {
         HStack {
@@ -17,13 +17,13 @@ struct ExpenseInfoRow: View {
             
             Spacer()
             
-            Text(amountSpent)
+            Text("\(amountSpent)")
         }
     }
 }
 
 struct ExpenseInfoRow_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseInfoRow(nameOfExpense: "Coffee", amountSpent: "1.2")
+        ExpenseInfoRow(nameOfExpense: "Coffee", amountSpent: 1.2)
     }
 }

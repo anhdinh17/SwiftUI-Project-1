@@ -14,6 +14,9 @@ struct AddNewExpense: View {
     @State var nameOfExpense: String = ""
     @State var amountSpent: String = ""
     @State var dateSpendMoney: Date = Date()
+    var idOfFolder: String
+    var folderName: String
+    @State var isAlertOn: Bool = false
     
     var body: some View {
         VStack {
@@ -28,6 +31,7 @@ struct AddNewExpense: View {
                 
                 TextField("Amount", text: $amountSpent)
                     .textFieldStyle(PlainTextFieldStyle())
+                    .keyboardType(.numberPad)
                 
                 DatePicker("Date you spend on",
                            selection: $dateSpendMoney,
@@ -35,9 +39,20 @@ struct AddNewExpense: View {
                 )
                 
                 Button{
-                    let expenseModel = ExpenseModel(nameOfExpense: nameOfExpense, amoutExpense: amountSpent, dateSpendOn: dateSpendMoney)
+                    let expenseModel = ExpenseModel(nameOfExpense: nameOfExpense, amoutExpense: Double(amountSpent) ?? 0.00, dateSpendOn: dateSpendMoney)
                     expenseArray.append(expenseModel)
-                    self.newItemPresented = false
+                    
+                    // Add to DB
+                    DataManager.shared.addDetailsToFolder(folderName: self.folderName,
+                                                          id: self.idOfFolder,
+                                                          expenseModel: expenseModel) { success in
+                        if success {
+                            // Close pop-up sheet
+                            self.newItemPresented = false
+                        } else {
+                            isAlertOn = true
+                        }
+                    }
                 }label: {
                     Text("Add")
                         .bold()
@@ -46,11 +61,17 @@ struct AddNewExpense: View {
                 }
             }
         }
+        .alert("Oops something went wrong", isPresented: $isAlertOn) {
+            // Alert that users cannot add detail expense
+        }
     }
 }
 
 struct AddNewExpense_Previews: PreviewProvider {
     static var previews: some View {
-        AddNewExpense(newItemPresented: .constant(false), expenseArray: .constant([ExpenseModel(nameOfExpense: "Coffee", amoutExpense: "5.00", dateSpendOn: Date())]))
+        AddNewExpense(newItemPresented: .constant(false),
+                      expenseArray: .constant([ExpenseModel(nameOfExpense: "Coffee", amoutExpense: 5.00, dateSpendOn: Date())]),
+                      idOfFolder: "12345",
+                      folderName: "abc")
     }
 }

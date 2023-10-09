@@ -10,4 +10,5 @@ import Foundation
 struct ExpenseFolder: Hashable, Identifiable {
     let id = UUID()
     let name: String
+    var idOfEachFolder: String?
 }

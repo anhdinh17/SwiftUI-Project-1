@@ -25,7 +25,9 @@ struct ExpenseHomeView: View {
             }
             .navigationTitle("Home")
             .navigationDestination(for: ExpenseFolder.self){ folderName in
-                DetailedScreenOfExpenses()
+                // Pass ChildByAutoID to next screen
+                DetailedScreenOfExpenses(idOfFolder: folderName.idOfEachFolder ?? "",
+                                         folderName: folderName.name)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -64,7 +66,6 @@ struct ExpenseHomeView: View {
         }, message : {
             Text("Enter name of your subject")
         })
-//        .alert("", isPresented: <#T##Binding<Bool>#>, actions: <#T##() -> View#>)
     }
 }
 

@@ -11,6 +11,6 @@ import SwiftUI
 struct ExpenseModel: Hashable, Identifiable {
     let id = UUID()
     let nameOfExpense: String
-    let amoutExpense: String
+    let amoutExpense: Double
     let dateSpendOn: Date
 }
