@@ -18,7 +18,8 @@ struct DetailedScreenOfExpenses: View {
             List {
                 ForEach(expenseArray) { expense in
                     NavigationLink(value: expense) {
-                        ExpenseInfoRow(nameOfExpense: expense.nameOfExpense, amountSpent: expense.amoutExpense, dateSpentMoney: expense.dateSpendOn)
+                        let dateSpendMoney = Utility.convertTimeIntervalToDateFormat(timeInterval: expense.dateSpendOn)
+                        ExpenseInfoRow(nameOfExpense: expense.nameOfExpense, amountSpent: expense.amoutExpense, dateSpentMoney: dateSpendMoney)
                     }
                 }
             }

@@ -42,6 +42,7 @@
 		6794F4F82A97003000053505 /* AddNewExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6794F4F72A97003000053505 /* AddNewExpense.swift */; };
 		6794F4FB2A970BB000053505 /* ExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6794F4FA2A970BB000053505 /* ExpenseModel.swift */; };
 		6794F4FD2A97128200053505 /* ExpenseInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6794F4FC2A97128200053505 /* ExpenseInfoRow.swift */; };
+		67A328A02AD7AE52000ACC65 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A3289F2AD7AE52000ACC65 /* Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		6794F4F72A97003000053505 /* AddNewExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewExpense.swift; sourceTree = "<group>"; };
 		6794F4FA2A970BB000053505 /* ExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseModel.swift; sourceTree = "<group>"; };
 		6794F4FC2A97128200053505 /* ExpenseInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseInfoRow.swift; sourceTree = "<group>"; };
+		67A3289F2AD7AE52000ACC65 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 		6794F4E72A96F3B300053505 /* Check My Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				67A3289E2AD7AE42000ACC65 /* Utility */,
 				670E80CE2AA4F97C00292A39 /* Manager */,
 				6794F4F62A96FFC700053505 /* Screens */,
 				6794F4F92A970B9E00053505 /* Models */,
@@ -183,6 +186,14 @@
 				670E80D32AA5891900292A39 /* ExpenseFolder.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		67A3289E2AD7AE42000ACC65 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				67A3289F2AD7AE52000ACC65 /* Utility.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67A328A02AD7AE52000ACC65 /* Utility.swift in Sources */,
 				6794F4F82A97003000053505 /* AddNewExpense.swift in Sources */,
 				670E80D22AA4FAD200292A39 /* ExpenseHomeViewViewModel.swift in Sources */,
 				670E80D42AA5891900292A39 /* ExpenseFolder.swift in Sources */,

@@ -10,7 +10,7 @@ import SwiftUI
 struct ExpenseInfoRow: View {
     let nameOfExpense: String
     let amountSpent: Double
-    let dateSpentMoney: Date
+    let dateSpentMoney: String
     
     var body: some View {
         VStack {
@@ -35,7 +35,7 @@ struct ExpenseInfoRow: View {
                 
                 Spacer()
                 
-                Text(dateSpentMoney,style: .date)
+                Text(dateSpentMoney)
             }
         }
 
@@ -44,6 +44,6 @@ struct ExpenseInfoRow: View {
 
 struct ExpenseInfoRow_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseInfoRow(nameOfExpense: "Coffee", amountSpent: 1.2, dateSpentMoney: Date())
+        ExpenseInfoRow(nameOfExpense: "Coffee", amountSpent: 1.2, dateSpentMoney: "10/10/2023")
     }
 }

@@ -12,5 +12,6 @@ struct ExpenseModel: Hashable, Identifiable {
     let id = UUID()
     let nameOfExpense: String
     let amoutExpense: Double
-    let dateSpendOn: Date
+    // Use TimeInterval to save to DB
+    let dateSpendOn: TimeInterval
 }

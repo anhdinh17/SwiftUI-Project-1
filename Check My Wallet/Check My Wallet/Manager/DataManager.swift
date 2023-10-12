@@ -97,7 +97,7 @@ class DataManager {
                 self?.databaseRef.child("folders").child(id).child(folderName).setValue(
                     [expenseModel.nameOfExpense: [
                         "Amount" : expenseModel.amoutExpense,
-                        "Date" : expenseModel.dateSpendOn.timeIntervalSince1970
+                        "Date" : expenseModel.dateSpendOn
                     ]
                     ]
                 ) { error, _ in
@@ -112,7 +112,7 @@ class DataManager {
             // Nếu dưới folder name đã có dictionary
             // Add new key-value to dictionary under folder name
             dictionary[expenseModel.nameOfExpense] = ["Amount" : expenseModel.amoutExpense,
-                                                      "Date" : expenseModel.dateSpendOn.timeIntervalSince1970]
+                                                      "Date" : expenseModel.dateSpendOn]
             self?.databaseRef.child("folders").child(id).child(folderName).setValue(dictionary) { error,_ in
                 if error == nil {
                     completion(true)
@@ -127,15 +127,13 @@ class DataManager {
     
     func readDataFromEachFolder(folderID: String, folderName: String, completion: @escaping(([ExpenseModel]) -> Void)) {
         var tempArray: [ExpenseModel] = []
-        
+
         databaseRef.child("folders").child(folderID).child(folderName).observeSingleEvent(of: .value, with: { snapshot in
             guard let dictionary = snapshot.value as? [String:Any] else {return}
             for (key,value) in dictionary {
                 guard let subDict = value as? [String:Any] else {return}
-                for (subKey, subValue) in subDict {
-                    let model = ExpenseModel(nameOfExpense: subKey as! String, amoutExpense: subValue as! Double, dateSpendOn: Date())
-                    tempArray.append(model)
-                }
+                let model = ExpenseModel(nameOfExpense: key, amoutExpense: subDict["Amount"] as! Double, dateSpendOn: subDict["Date"] as! TimeInterval)
+                tempArray.append(model)
             }
             completion(tempArray)
         })
