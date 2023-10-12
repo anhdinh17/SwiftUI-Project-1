@@ -18,13 +18,13 @@ struct DetailedScreenOfExpenses: View {
             List {
                 ForEach(expenseArray) { expense in
                     NavigationLink(value: expense) {
-                        ExpenseInfoRow(nameOfExpense: expense.nameOfExpense, amountSpent: expense.amoutExpense)
+                        ExpenseInfoRow(nameOfExpense: expense.nameOfExpense, amountSpent: expense.amoutExpense, dateSpentMoney: expense.dateSpendOn)
                     }
                 }
             }
             .onAppear{
-                DataManager.shared.readDataFromEachFolder(folderID: idOfFolder, completion: { array in
-                    
+                DataManager.shared.readDataFromEachFolder(folderID: idOfFolder, folderName: folderName, completion: { array in
+                    self.expenseArray = array
                 })
             }
             .navigationDestination(for: ExpenseModel.self){ expense in

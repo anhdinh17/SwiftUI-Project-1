@@ -10,20 +10,40 @@ import SwiftUI
 struct ExpenseInfoRow: View {
     let nameOfExpense: String
     let amountSpent: Double
+    let dateSpentMoney: Date
     
     var body: some View {
-        HStack {
-            Text(nameOfExpense)
+        VStack {
+            HStack {
+                Spacer()
+                
+                Text(nameOfExpense)
+                
+                Spacer()
+            }
             
-            Spacer()
+            HStack {
+                Text("Amount:")
+                
+                Spacer()
+                
+                Text("\(amountSpent, specifier: "%.2f")")
+            }
             
-            Text("\(amountSpent)")
+            HStack {
+                Text("Date:")
+                
+                Spacer()
+                
+                Text(dateSpentMoney,style: .date)
+            }
         }
+
     }
 }
 
 struct ExpenseInfoRow_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseInfoRow(nameOfExpense: "Coffee", amountSpent: 1.2)
+        ExpenseInfoRow(nameOfExpense: "Coffee", amountSpent: 1.2, dateSpentMoney: Date())
     }
 }

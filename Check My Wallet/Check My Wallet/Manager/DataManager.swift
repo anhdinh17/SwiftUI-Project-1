@@ -38,7 +38,8 @@ class DataManager {
                 return
             }
             
-            // if under "folders" already has data.
+            // if under ID already has data.
+            // Hình như dòng này lặp lại với đống trên
             dictionary[folderName] = ""
             self?.databaseRef.child("folders").childByAutoId().setValue(dictionary, withCompletionBlock: { error, _ in
                 guard error == nil else {
@@ -88,31 +89,53 @@ class DataManager {
     // Add detail to existing folder
     // This func add details of expense to an existing folder
     func addDetailsToFolder(folderName: String, id: String, expenseModel: ExpenseModel, completion: @escaping(Bool) -> Void) {
-        let detailedExpense: [String: Any] = [
-            "Expense Name" : expenseModel.nameOfExpense,
-            "Expense Money" : expenseModel.amoutExpense,
-        ]
-        let updateDictionary = [
-            folderName : detailedExpense
-        ]
-        databaseRef.child("folders").child(id).setValue(updateDictionary) { error,_ in
-            if error == nil {
-                completion(true)
-            } else {
-                completion(false)
+        databaseRef.child("folders").child(id).child(folderName).observeSingleEvent(of: .value) { [weak self] snapshot in
+            // dictionary = dictionary under folder name
+            guard var dictionary = snapshot.value as? [String:Any] else {
+                // Nếu dưới folder name chưa có gì, trong tình huống này là EMPTY STRING.
+                // Tạo dictionary dạng ta muốn
+                self?.databaseRef.child("folders").child(id).child(folderName).setValue(
+                    [expenseModel.nameOfExpense: [
+                        "Amount" : expenseModel.amoutExpense,
+                        "Date" : expenseModel.dateSpendOn.timeIntervalSince1970
+                    ]
+                    ]
+                ) { error, _ in
+                    guard error == nil else {
+                        completion(false)
+                        return
+                    }
+                    completion(true)
+                }
+                return
+            }
+            // Nếu dưới folder name đã có dictionary
+            // Add new key-value to dictionary under folder name
+            dictionary[expenseModel.nameOfExpense] = ["Amount" : expenseModel.amoutExpense,
+                                                      "Date" : expenseModel.dateSpendOn.timeIntervalSince1970]
+            self?.databaseRef.child("folders").child(id).child(folderName).setValue(dictionary) { error,_ in
+                if error == nil {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
             }
         }
+
+
     }
     
-    func readDataFromEachFolder(folderID: String, completion: @escaping(([ExpenseModel]) -> Void)) {
+    func readDataFromEachFolder(folderID: String, folderName: String, completion: @escaping(([ExpenseModel]) -> Void)) {
         var tempArray: [ExpenseModel] = []
         
-        databaseRef.child("folders").child(folderID).observeSingleEvent(of: .value, with: { [weak self] snapshot in
+        databaseRef.child("folders").child(folderID).child(folderName).observeSingleEvent(of: .value, with: { snapshot in
             guard let dictionary = snapshot.value as? [String:Any] else {return}
             for (key,value) in dictionary {
                 guard let subDict = value as? [String:Any] else {return}
-                let model = ExpenseModel(nameOfExpense: subDict["Expense Name"] as! String, amoutExpense: subDict["Expense Money"] as! Double, dateSpendOn: Date())
-                tempArray.append(model)
+                for (subKey, subValue) in subDict {
+                    let model = ExpenseModel(nameOfExpense: subKey as! String, amoutExpense: subValue as! Double, dateSpendOn: Date())
+                    tempArray.append(model)
+                }
             }
             completion(tempArray)
         })
