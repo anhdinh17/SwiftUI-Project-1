@@ -48,9 +48,9 @@ struct DetailedScreenOfExpenses: View {
             }
             
             if expenseArray.count > 0 {
-                Button {
-                    // Go to chart screen
-                } label: {
+                // Click on button to go to ChartView
+                // Using NavigationLink
+                NavigationLink(destination: ChartView(expenseArray: self.expenseArray)) {
                     Text("See Charts")
                         .font(.title3)
                         .fontWeight(.semibold)
@@ -60,7 +60,6 @@ struct DetailedScreenOfExpenses: View {
                         .cornerRadius(10)
                 }
             }
-
     }
 }
 
