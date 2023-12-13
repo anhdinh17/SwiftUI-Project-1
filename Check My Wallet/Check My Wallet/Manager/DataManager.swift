@@ -23,7 +23,7 @@ class DataManager {
     func createExpenseFolder(folderName: String, completion: @escaping (Bool)->Void) {
         databaseRef.child("folders").childByAutoId().observeSingleEvent(of: .value) { [weak self] snapshot in
             guard var dictionary = snapshot.value as? [String:Any] else {
-                // if under "folders" doesn't have any data yet.
+                // if under folder/chilByAutoId doesn't have any data yet.
                 self?.databaseRef.child("folders").childByAutoId().setValue(
                     [
                         folderName: ""

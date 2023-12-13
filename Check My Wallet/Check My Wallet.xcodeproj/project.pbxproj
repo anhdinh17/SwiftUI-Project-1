@@ -44,6 +44,9 @@
 		6794F4FD2A97128200053505 /* ExpenseInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6794F4FC2A97128200053505 /* ExpenseInfoRow.swift */; };
 		67A328A02AD7AE52000ACC65 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A3289F2AD7AE52000ACC65 /* Utility.swift */; };
 		67C370F32B18437A0005D45C /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C370F22B18437A0005D45C /* ChartView.swift */; };
+		67EFBE642B295542007D2DFA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EFBE632B295542007D2DFA /* LoginView.swift */; };
+		67EFBE672B297008007D2DFA /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EFBE662B297008007D2DFA /* Header.swift */; };
+		67EFBE6A2B297213007D2DFA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EFBE692B297213007D2DFA /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,9 @@
 		6794F4FC2A97128200053505 /* ExpenseInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseInfoRow.swift; sourceTree = "<group>"; };
 		67A3289F2AD7AE52000ACC65 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		67C370F22B18437A0005D45C /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		67EFBE632B295542007D2DFA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		67EFBE662B297008007D2DFA /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		67EFBE692B297213007D2DFA /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +163,7 @@
 				6794F4F62A96FFC700053505 /* Screens */,
 				6794F4F92A970B9E00053505 /* Models */,
 				6794F4E82A96F3B300053505 /* Check_My_WalletApp.swift */,
+				67EFBE682B2971FF007D2DFA /* ViewModels */,
 				6794F4EC2A96F3B500053505 /* Assets.xcassets */,
 				6794F4EE2A96F3B500053505 /* Preview Content */,
 			);
@@ -174,10 +181,12 @@
 		6794F4F62A96FFC700053505 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				67EFBE602B295519007D2DFA /* Log in  */,
 				67C370F12B1843660005D45C /* Chart View */,
 				670E809A2AA4E12600292A39 /* Add new Expense */,
 				670E80992AA4E11900292A39 /* Detailed Screen */,
 				670E80982AA4E10800292A39 /* Home */,
+				67EFBE652B296FEA007D2DFA /* Others  */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -205,6 +214,30 @@
 				67C370F22B18437A0005D45C /* ChartView.swift */,
 			);
 			path = "Chart View";
+			sourceTree = "<group>";
+		};
+		67EFBE602B295519007D2DFA /* Log in  */ = {
+			isa = PBXGroup;
+			children = (
+				67EFBE632B295542007D2DFA /* LoginView.swift */,
+			);
+			path = "Log in ";
+			sourceTree = "<group>";
+		};
+		67EFBE652B296FEA007D2DFA /* Others  */ = {
+			isa = PBXGroup;
+			children = (
+				67EFBE662B297008007D2DFA /* Header.swift */,
+			);
+			path = "Others ";
+			sourceTree = "<group>";
+		};
+		67EFBE682B2971FF007D2DFA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				67EFBE692B297213007D2DFA /* LoginViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,11 +340,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				67A328A02AD7AE52000ACC65 /* Utility.swift in Sources */,
+				67EFBE672B297008007D2DFA /* Header.swift in Sources */,
 				6794F4F82A97003000053505 /* AddNewExpense.swift in Sources */,
 				670E80D22AA4FAD200292A39 /* ExpenseHomeViewViewModel.swift in Sources */,
 				670E80D42AA5891900292A39 /* ExpenseFolder.swift in Sources */,
 				6794F4EB2A96F3B300053505 /* ExpenseHomeView.swift in Sources */,
+				67EFBE6A2B297213007D2DFA /* LoginViewModel.swift in Sources */,
 				6794F4FB2A970BB000053505 /* ExpenseModel.swift in Sources */,
+				67EFBE642B295542007D2DFA /* LoginView.swift in Sources */,
 				670E80D02AA4F99100292A39 /* DataManager.swift in Sources */,
 				67C370F32B18437A0005D45C /* ChartView.swift in Sources */,
 				6794F4E92A96F3B300053505 /* Check_My_WalletApp.swift in Sources */,
