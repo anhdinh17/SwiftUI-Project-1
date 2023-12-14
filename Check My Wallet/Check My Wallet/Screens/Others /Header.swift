@@ -27,8 +27,9 @@ struct HeaderView: View {
                     .bold()
                 
                 Text(subtitle)
-                    .font(.system(size: 30))
+                    .font(.system(size: 25))
                     .foregroundColor(Color.white)
+                    .multilineTextAlignment(.center)
             }
             .padding(.top, 80)
         }

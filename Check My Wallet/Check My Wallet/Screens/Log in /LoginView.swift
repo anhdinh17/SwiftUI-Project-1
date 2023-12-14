@@ -28,10 +28,9 @@ struct LoginView: View {
                     }
                     .padding()
 
-                    Button {
-                        // Sign up for an account
-                    } label: {
-                        Text("Don't have an account yet? Sign up here")
+                    NavigationLink(destination: SignUpView()) {
+                        Text("Don't have an account? Sign up")
+                            .frame(width: 260, height: 40)
                     }
                     .padding(.bottom, 10)
                     

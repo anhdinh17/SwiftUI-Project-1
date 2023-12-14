@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import FirebaseDatabase
+import FirebaseAuth
 
 class DataManager {
     static let shared = DataManager()
@@ -20,6 +21,36 @@ class DataManager {
         databaseRef.child("folders").setValue([folderName: ""])
     }
     
+    func createUserInDB(id: String, username: String) {
+        // Create "username" node and "folders" node
+        // "folders" node lúc này empty vì mới tạo account
+        databaseRef.child("Users").child(id).setValue(["username":username, "folders": ""])
+    }
+    
+    // Create ExpenseFolder with email,username,ID of user
+    func createExpenseFolderWithUserID(id: String, username: String, folderName: String, completion: @escaping ((Bool) -> Void)){
+        databaseRef.child("Users").child(id).observeSingleEvent(of: .value) { [weak self] snapshot in
+            guard var dictionary = snapshot.value as? [String:Any] else {
+                return
+            }
+            
+            let folderDictionary = [
+                folderName : ""
+            ]
+            
+            dictionary["folders"] = folderDictionary
+            self?.databaseRef.child("Users").child(id).setValue(dictionary, withCompletionBlock: { error, _ in
+                guard error == nil else {
+                    completion(false)
+                    return
+                }
+                completion(true)
+            })
+        }
+    }
+    
+    // Create expense folder with childByAutoID
+    // This func is used before we create SignIn/SignUp screens
     func createExpenseFolder(folderName: String, completion: @escaping (Bool)->Void) {
         databaseRef.child("folders").childByAutoId().observeSingleEvent(of: .value) { [weak self] snapshot in
             guard var dictionary = snapshot.value as? [String:Any] else {
