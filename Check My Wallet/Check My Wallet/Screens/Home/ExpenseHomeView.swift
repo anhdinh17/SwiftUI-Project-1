@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ExpenseHomeView: View {
     
@@ -37,6 +38,12 @@ struct ExpenseHomeView: View {
                         Image(systemName: "plus")
                     }
                 }
+            }
+            
+            Button {
+                try? Auth.auth().signOut()
+            } label: {
+                Text("Sign Out")
             }
         }
         .onAppear{

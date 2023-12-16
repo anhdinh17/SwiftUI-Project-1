@@ -20,8 +20,9 @@ struct LoginView: View {
                 
                 VStack {
                     VStack {
-                        TextField("E-mail", text: $viewModel.username)
+                        TextField("E-mail", text: $viewModel.email)
                             .textFieldStyle(.roundedBorder)
+                            .textInputAutocapitalization(.never)
                         
                         SecureField("Password", text: $viewModel.password)
                             .textFieldStyle(.roundedBorder)
@@ -35,7 +36,10 @@ struct LoginView: View {
                     .padding(.bottom, 10)
                     
                     Button {
-                        
+                        viewModel.login()
+                        /**
+                         - Khi login thanh cong -> users signed in -> trong MainView, viewModel.currentUserID not empty AND viewModel.IsSignedIn = true -> hien man hinh minh muon
+                         */
                     } label: {
                         Text("Sign In")
                             .padding()

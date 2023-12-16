@@ -43,6 +43,8 @@
 		6794F4FB2A970BB000053505 /* ExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6794F4FA2A970BB000053505 /* ExpenseModel.swift */; };
 		6794F4FD2A97128200053505 /* ExpenseInfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6794F4FC2A97128200053505 /* ExpenseInfoRow.swift */; };
 		67A328A02AD7AE52000ACC65 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A3289F2AD7AE52000ACC65 /* Utility.swift */; };
+		67BE72FD2B2E11C2002B09D4 /* MainViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BE72FC2B2E11C2002B09D4 /* MainViewVM.swift */; };
+		67BE72FF2B2E121A002B09D4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BE72FE2B2E121A002B09D4 /* MainView.swift */; };
 		67C370F32B18437A0005D45C /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C370F22B18437A0005D45C /* ChartView.swift */; };
 		67EFBE642B295542007D2DFA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EFBE632B295542007D2DFA /* LoginView.swift */; };
 		67EFBE672B297008007D2DFA /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EFBE662B297008007D2DFA /* Header.swift */; };
@@ -67,6 +69,8 @@
 		6794F4FA2A970BB000053505 /* ExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseModel.swift; sourceTree = "<group>"; };
 		6794F4FC2A97128200053505 /* ExpenseInfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseInfoRow.swift; sourceTree = "<group>"; };
 		67A3289F2AD7AE52000ACC65 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		67BE72FC2B2E11C2002B09D4 /* MainViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewVM.swift; sourceTree = "<group>"; };
+		67BE72FE2B2E121A002B09D4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		67C370F22B18437A0005D45C /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		67EFBE632B295542007D2DFA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		67EFBE662B297008007D2DFA /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 		6794F4F62A96FFC700053505 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				67BE72FB2B2E11AD002B09D4 /* Main View */,
 				67EFBE602B295519007D2DFA /* Log in  */,
 				67C370F12B1843660005D45C /* Chart View */,
 				670E809A2AA4E12600292A39 /* Add new Expense */,
@@ -212,6 +217,14 @@
 				67A3289F2AD7AE52000ACC65 /* Utility.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		67BE72FB2B2E11AD002B09D4 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				67BE72FE2B2E121A002B09D4 /* MainView.swift */,
+			);
+			path = "Main View";
 			sourceTree = "<group>";
 		};
 		67C370F12B1843660005D45C /* Chart View */ = {
@@ -245,6 +258,7 @@
 			children = (
 				67EFBE692B297213007D2DFA /* LoginViewModel.swift */,
 				67EFBE8D2B2AAD90007D2DFA /* SignUpViewmodel.swift */,
+				67BE72FC2B2E11C2002B09D4 /* MainViewVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -348,10 +362,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67BE72FD2B2E11C2002B09D4 /* MainViewVM.swift in Sources */,
 				67A328A02AD7AE52000ACC65 /* Utility.swift in Sources */,
 				67EFBE8C2B2AAD79007D2DFA /* SignUpView.swift in Sources */,
 				67EFBE8E2B2AAD90007D2DFA /* SignUpViewmodel.swift in Sources */,
 				67EFBE672B297008007D2DFA /* Header.swift in Sources */,
+				67BE72FF2B2E121A002B09D4 /* MainView.swift in Sources */,
 				6794F4F82A97003000053505 /* AddNewExpense.swift in Sources */,
 				670E80D22AA4FAD200292A39 /* ExpenseHomeViewViewModel.swift in Sources */,
 				670E80D42AA5891900292A39 /* ExpenseFolder.swift in Sources */,
