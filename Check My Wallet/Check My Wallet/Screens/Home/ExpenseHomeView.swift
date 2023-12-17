@@ -13,7 +13,7 @@ struct ExpenseHomeView: View {
     @State var isAddButtonTapped: Bool = false
     @State var folderArray: [ExpenseFolder] = []
     @State var showAddFolderAlert: Bool = false
-    @State var folderName: String = ""
+    @StateObject var viewModel = ExpenseHomeViewViewModel()
     
     var body: some View {
         NavigationStack {
@@ -26,9 +26,8 @@ struct ExpenseHomeView: View {
             }
             .navigationTitle("Home")
             .navigationDestination(for: ExpenseFolder.self){ folderName in
-                // Pass ChildByAutoID to next screen
-                DetailedScreenOfExpenses(idOfFolder: folderName.idOfEachFolder ?? "",
-                                         folderName: folderName.name)
+                DetailedScreenOfExpenses(folderName: folderName.name,
+                                         userID: viewModel.userID)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -47,24 +46,27 @@ struct ExpenseHomeView: View {
             }
         }
         .onAppear{
-            DataManager.shared.readDataFromDB { folderArray in
-                self.folderArray = folderArray
-            }
+            // Fetch data from Realtime DB respect to current user
+            DataManager.shared.readDataBasedOnUserID(userID: viewModel.userID, completion: { array in
+                self.folderArray = array
+            })
         }
         .alert("Add Your Expense Object", isPresented: $showAddFolderAlert, actions: {
-            TextField("Your folder name", text: $folderName)
+            TextField("Your folder name", text: $viewModel.folderName)
             Button("Add", action: {
                 // Tap Add button of alert
-                if !self.folderName.isEmpty {
+                if !viewModel.folderName.isEmpty {
                     // save to database
-                    DataManager.shared.createExpenseFolder(folderName: self.folderName) { result in
+                    DataManager.shared.createExpenseFolderWithUserID(id: viewModel.userID, folderName: viewModel.folderName, completion: { result,array in
                         if result {
-                            folderArray.append(ExpenseFolder(name: folderName))
+                            self.folderArray = array
                         } else {
                             print("UNABLE TO SAVE TO DATA")
                         }
-                    }
-//                    DataManager.shared.testAddData(folderName: folderName)
+                    })
+                    // Set viewModel folder name to be empty so next time we click +
+                    // textField will be empty
+                    viewModel.folderName = ""
                 } else {
                     // alert to make users enter name
                 }

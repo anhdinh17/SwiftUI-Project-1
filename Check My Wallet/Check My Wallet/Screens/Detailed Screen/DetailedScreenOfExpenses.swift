@@ -11,8 +11,8 @@ struct DetailedScreenOfExpenses: View {
     
     @State var isAddButtonTapped: Bool = false
     @State var expenseArray: [ExpenseModel] = []
-    var idOfFolder: String
     var folderName: String
+    var userID: String
     
     var body: some View {
             List {
@@ -23,11 +23,11 @@ struct DetailedScreenOfExpenses: View {
                     }
                 }
             }
-            .onAppear{
-                DataManager.shared.readDataFromEachFolder(folderID: idOfFolder, folderName: folderName, completion: { array in
-                    self.expenseArray = array
-                })
-            }
+//            .onAppear{
+//                DataManager.shared.readDataFromEachFolder(folderID: idOfFolder, folderName: folderName, completion: { array in
+//                    self.expenseArray = array
+//                })
+//            }
             .navigationDestination(for: ExpenseModel.self){ expense in
                 Text("\(expense.nameOfExpense)")
             }
@@ -43,8 +43,8 @@ struct DetailedScreenOfExpenses: View {
             .sheet(isPresented: $isAddButtonTapped) {
                 AddNewExpense(newItemPresented: $isAddButtonTapped,
                               expenseArray: $expenseArray,
-                              idOfFolder: self.idOfFolder,
-                              folderName: self.folderName)
+                              folderName: self.folderName,
+                              userID: self.userID)
             }
             
             if expenseArray.count > 0 {
@@ -65,6 +65,6 @@ struct DetailedScreenOfExpenses: View {
 
 struct DetailedScreenOfExpenses_Previews: PreviewProvider {
     static var previews: some View {
-        DetailedScreenOfExpenses(idOfFolder: "12345", folderName: "Whatever")
+        DetailedScreenOfExpenses(folderName: "Whatever", userID: "")
     }
 }

@@ -6,7 +6,18 @@
 //
 
 import Foundation
+import FirebaseAuth
 
-class ExpenseHomeViewViewModel {
+class ExpenseHomeViewViewModel: ObservableObject {
+    @Published var userID: String
+    @Published var folderName: String = ""
     
+    init() {
+        // Check if user is signed in
+        if Auth.auth().currentUser != nil {
+            self.userID = Auth.auth().currentUser?.uid ?? ""
+        } else {
+            self.userID = ""
+        }
+    }
 }
