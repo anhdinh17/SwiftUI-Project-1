@@ -12,7 +12,7 @@ import FirebaseAuth
 
 class DataManager {
     static let shared = DataManager()
-
+    
     private init() {}
     
     let databaseRef = Database.database().reference()
@@ -130,7 +130,7 @@ class DataManager {
     
     func readDataFromEachFolder(folderID: String, folderName: String, completion: @escaping(([ExpenseModel]) -> Void)) {
         var tempArray: [ExpenseModel] = []
-
+        
         databaseRef.child("folders").child(folderID).child(folderName).observeSingleEvent(of: .value, with: { snapshot in
             guard let dictionary = snapshot.value as? [String:Any] else {return}
             for (key,value) in dictionary {
@@ -142,6 +142,10 @@ class DataManager {
         })
     }
     
+    //=======================================================================================================
+    //MARK: With Login screen
+    //=======================================================================================================
+    
     func createUserInDB(id: String, username: String) {
         // Create "username" node and "folders" node
         // "folders" node lúc này empty vì mới tạo account
@@ -150,99 +154,171 @@ class DataManager {
     
     // Create ExpenseFolder with ID of user
     // Under node ID at this point, there is dictionary of ["username": <username>, "folders": ""]
-    func createExpenseFolderWithUserID(id: String, folderName: String, completion: @escaping ((Bool,[ExpenseFolder]) -> Void)){
+    /**
+     - Voi func nay minh tra ve 1 arry FoldersModel. Nguyen nhan la luc dau cu tuong neu tra ve array cua ExpenseFolder this se bi vuong "id= UUID" trong ExpenseFolder + minh can 1 object voi var of fixed ID from DB.
+     - Nhung hay suy nghi: Khi tao 1 object ExpenseFolder o ExpenseHomeView de day len DB, moi object se co var id, minh se dung var id do de tao id cho tung folder. Sau khi xong xuoi het, neu minh lai tao object cua ExpenseFolder va tra ve trong call back, var id luc nay ko anh huong gi het ma chi dung cho List cong them minh van co the pass vo fixed ID tu DB cho object nay => Ap dung logic nay cho addDetailsToEachFolderBasedOnUserID
+     */
+    func createExpenseFolderWithUserID(userID: String, expenseFolder: ExpenseFolder, completion: @escaping ((Bool,[FoldersModel]) -> Void)){
         // Array chi chua folder name
-        var tempArray: [ExpenseFolder] = []
+        var tempArray: [FoldersModel] = []
         
-        databaseRef.child("Users").child(id).observeSingleEvent(of: .value, with: { [weak self] snapshot in
-            // What under ID node
+        databaseRef.child("Users").child(userID).child("folders").observeSingleEvent(of: .value, with: { [weak self] snapshot in
+            // What under "folders" node.
             guard var dictionary = snapshot.value as? [String:Any] else {
-                return
-            }
-            
-            // If the first time users create a folder
-            // When we create a user by signing up, we also create "folders" under userID and set it ""
-            // But when we try to do dictionary["folders"] it returns nil. So we have to check if it's nill that means
-            // users first time create a folder
-            guard var folderDictionary = dictionary["folders"] as? [String:Any] else {
-                dictionary["folders"] = [
-                    folderName : ""
+                // If there's nothing under "folders" (first time creating)
+                let addedFolder = [
+                    expenseFolder.id : [expenseFolder.name:""]
                 ]
-                let object = ExpenseFolder(name: folderName)
-                tempArray.append(object)
-                // Add xong lan dau thi return true va array roi ngung
-                completion(true,tempArray)
+                self?.databaseRef.child("Users").child(userID).child("folders").setValue(addedFolder) { error, _ in
+                    if error != nil {
+                        completion(false,[])
+                        return
+                    } else {
+                        let folder = FoldersModel(folderName: expenseFolder.name, folderIDFromDB: expenseFolder.id)
+                        tempArray.append(folder)
+                        completion(true,tempArray)
+                        // Tao xong folder dau tien roi ngung
+                        // Array tra ve chi co 1 element
+                    }
+                }
                 return
             }
-            print("DICTIONARY FOLDER: \(folderDictionary)")
             
-            // Nếu dictionary["folders"] ko nil - tức là đã có folder nào đó rồi, add thêm folder mới
-            // Set empty vì tại thời điểm này mình chỉ muốn tạo folder thôi
-            folderDictionary[folderName] = ""
-            print("DICTIONARY FOLDER AFTER ADDED NEW FOLDER: \(folderDictionary)")
-            // Tao array chi chua folder name
-            folderDictionary.keys.forEach { folder in
-                tempArray.append(ExpenseFolder(name: folder))
-            }
-            
-            // Dùng syntax nách để update child "folders"
-            // Còn nếu dùng cách child("Users").child(id).setValue(dictionary) ko ra.
-            // Firebase ko update lại toàn bộ "dictionary", mình phải update ở vị trí mình muốn.
-            self?.databaseRef.child("Users/\(id)/folders").setValue(folderDictionary, withCompletionBlock: { error, _ in
-                guard error == nil else {
+            // Neu duoi "folders" da co folder nao do roi
+            // Thi add them key-value
+            dictionary[expenseFolder.id] = [
+                expenseFolder.name : ""
+            ]
+            self?.databaseRef.child("Users").child(userID).child("folders").setValue(dictionary) { error, _ in
+                if error != nil {
                     completion(false,[])
                     return
+                } else {
+                    // Lam cach nao de lay ID cua tung folder va folder name
+                    for (key,value) in dictionary {
+                        let folderID = key
+                        // SubDict = dictionary duoi moi folder ID
+                        guard let subDict = value as? [String:Any] else {
+                            return
+                        }
+                        let folderName = subDict.keys.first
+                        let folder = FoldersModel(folderName: folderName, folderIDFromDB: folderID)
+                        tempArray.append(folder)
+                    }
+                    completion(true,tempArray)
                 }
-                completion(true,tempArray)
-            })
+            }
         })
     }
     
     // Read folder names
-    func readDataBasedOnUserID(userID: String, completion: @escaping (([ExpenseFolder]) -> Void)) {
-        var expenseFolderArray: [ExpenseFolder] = []
-        var tempStringArray: [String] = []
+    func readDataBasedOnUserID(userID: String, completion: @escaping (([FoldersModel]) -> Void)) {
+        var expenseFolderArray: [FoldersModel] = []
         databaseRef.child("Users").child(userID).child("folders").observeSingleEvent(of: .value, with: { [weak self] snapshhot in
             // What under "folders"
             guard let dictionary = snapshhot.value as? [String:Any] else {
                 completion([])
                 return
             }
-
-            dictionary.keys.forEach { eachKey in
-                tempStringArray.append(eachKey)
-            }
             
-            tempStringArray.forEach { item in
-                expenseFolderArray.append(.init(name: item))
+            // Take folder ID and folder name
+            for (key,value) in dictionary {
+                let folderID = key
+                // SubDict = dictionary duoi moi folder ID
+                guard let subDict = value as? [String:Any] else {
+                    return
+                }
+                let folderName = subDict.keys.first
+                let folder = FoldersModel(folderName: folderName, folderIDFromDB: folderID)
+                expenseFolderArray.append(folder)
             }
-            
             completion(expenseFolderArray)
         })
     }
     
-    func addDetailsToEachFolderBasedOnUserID(userID: String, folderName: String, expenseModel: ExpenseModel, completion: @escaping ((Bool) -> Void)) {
-        databaseRef.child("Users").child(userID).child("folders").observeSingleEvent(of: .value, with: { [weak self] snapshot in
-            guard let dictionary = snapshot.value as? [String:Any] else {
-                completion(false)
+    func addDetailsToEachFolderBasedOnUserID(userID: String,folderID: String, folderName: String, expenseModel: ExpenseModel, completion: @escaping ((Bool,[ExpenseModel]) -> Void)) {
+        var expenseArray: [ExpenseModel] = []
+        databaseRef.child("Users").child(userID).child("folders").child(folderID).child(folderName).observeSingleEvent(of: .value, with: { [weak self] snapshot in
+            // What under folder name
+            guard var dictionary = snapshot.value as? [String:Any] else {
+                // If under folder name there's nothing,
+                // we add a dictionary
+                let addedDict = [
+                    expenseModel.id : [
+                        expenseModel.nameOfExpense : ["Amount" : expenseModel.amoutExpense,
+                                                      "Date" : expenseModel.dateSpendOn]
+                    ]
+                ]
+                self?.databaseRef.child("Users").child(userID).child("folders").child(folderID).child(folderName).setValue(addedDict) {error, _ in
+                    guard error == nil else {
+                        completion(false,[])
+                        return
+                    }
+                    expenseArray.append(expenseModel)
+                    completion(true,expenseArray)
+                    // First time add item, return array of 1 element and stop
+                }
                 return
             }
             
-            guard var folderDictionary = dictionary["folders"] as? [String:Any] else {
-                return
-            }
-            guard var folderNameDictionary = folderDictionary[folderName] as? [String:Any] else {
-                return
-            }
-            folderNameDictionary[expenseModel.nameOfExpense] = ["Amount" : expenseModel.amoutExpense,
-                                                                "Date" : expenseModel.dateSpendOn]
-            self?.databaseRef.child("Users").child(userID).setValue(dictionary) { error,_ in
+            // if there's already dictionary under folder name,
+            // add key-value to that dict.
+            dictionary[expenseModel.id] = [expenseModel.nameOfExpense : ["Amount" : expenseModel.amoutExpense,
+                                                                         "Date" : expenseModel.dateSpendOn]]
+            self?.databaseRef.child("Users").child(userID).child("folders").child(folderID).child(folderName).setValue(dictionary) { error,_ in
                 if error == nil {
-                    completion(true)
+                    for (key,value) in dictionary {
+                        let whatYouBoughtID = key
+                        // dictUnderProductID = dictionary under productID
+                        guard let dictUnderProductID = value as? [String:Any] else {
+                            return
+                        }
+                        // .keys se tra ve array of 1 element la ten cua product vi chi co 1 element trong dictUnderProductID
+                        let productName = dictUnderProductID.keys.first ?? ""
+                        guard let dictUnderProduct = dictUnderProductID[productName] as? [String:Any] else {
+                            return
+                        }
+                        
+                        // Khi minh tao instance cua ExpenseModel de tra ve, luc nay
+                        // minh ko can quan tam var id cua ExpenseModel, no se duoc dung cho List cua screen.
+                        let expense = ExpenseModel(nameOfExpense: productName, amoutExpense: dictUnderProduct["Amount"] as! Double, dateSpendOn: dictUnderProduct["Date"] as! TimeInterval)
+                        expenseArray.append(expense)
+                    }
+                    completion(true,expenseArray)
                 } else {
-                    completion(false)
+                    completion(false,[])
                 }
             }
         })
     }
+    
+    // Read all products from 1 folder
+    func readDataFromOneFolder(userID: String, folderID: String, folderName: String, completion: @escaping ([ExpenseModel])->Void) {
+        var expenseArray: [ExpenseModel] = []
+        databaseRef.child("Users").child(userID).child("folders").child(folderID).child(folderName).observeSingleEvent(of: .value, with: { [weak self] snapshot in
+            guard let dictionary = snapshot.value as? [String:Any] else {
+                completion([])
+                return
+            }
+            
+            for (key,value) in dictionary {
+                let whatYouBoughtID = key
+                // SubDict = dictionary under productID
+                guard let dictUnderProductID = value as? [String:Any] else {
+                    return
+                }
+                let productName = dictUnderProductID.keys.first ?? ""
+                guard let dictUnderProduct = dictUnderProductID[productName] as? [String:Any] else {
+                    return
+                }
+                
+                // Khi minh tao instance cua ExpenseModel de tra ve, luc nay
+                // minh ko can quan tam var id cua ExpenseModel, no se duoc dung cho List cua screen.
+                let expense = ExpenseModel(nameOfExpense: productName, amoutExpense: dictUnderProduct["Amount"] as! Double, dateSpendOn: dictUnderProduct["Date"] as! TimeInterval)
+                expenseArray.append(expense)
+            }
+            completion(expenseArray)
+        })
+    }
+    
 }

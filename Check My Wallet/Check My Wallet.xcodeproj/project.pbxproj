@@ -45,7 +45,7 @@
 		67A328A02AD7AE52000ACC65 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A3289F2AD7AE52000ACC65 /* Utility.swift */; };
 		67BE72FD2B2E11C2002B09D4 /* MainViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BE72FC2B2E11C2002B09D4 /* MainViewVM.swift */; };
 		67BE72FF2B2E121A002B09D4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BE72FE2B2E121A002B09D4 /* MainView.swift */; };
-		67BE73012B2F4D8A002B09D4 /* ExpenseResposne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BE73002B2F4D8A002B09D4 /* ExpenseResposne.swift */; };
+		67BE73012B2F4D8A002B09D4 /* FoldersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BE73002B2F4D8A002B09D4 /* FoldersModel.swift */; };
 		67C370F32B18437A0005D45C /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C370F22B18437A0005D45C /* ChartView.swift */; };
 		67EFBE642B295542007D2DFA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EFBE632B295542007D2DFA /* LoginView.swift */; };
 		67EFBE672B297008007D2DFA /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EFBE662B297008007D2DFA /* Header.swift */; };
@@ -72,7 +72,7 @@
 		67A3289F2AD7AE52000ACC65 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		67BE72FC2B2E11C2002B09D4 /* MainViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewVM.swift; sourceTree = "<group>"; };
 		67BE72FE2B2E121A002B09D4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		67BE73002B2F4D8A002B09D4 /* ExpenseResposne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseResposne.swift; sourceTree = "<group>"; };
+		67BE73002B2F4D8A002B09D4 /* FoldersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersModel.swift; sourceTree = "<group>"; };
 		67C370F22B18437A0005D45C /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		67EFBE632B295542007D2DFA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		67EFBE662B297008007D2DFA /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 			children = (
 				6794F4FA2A970BB000053505 /* ExpenseModel.swift */,
 				670E80D32AA5891900292A39 /* ExpenseFolder.swift */,
-				67BE73002B2F4D8A002B09D4 /* ExpenseResposne.swift */,
+				67BE73002B2F4D8A002B09D4 /* FoldersModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -368,7 +368,7 @@
 				67BE72FD2B2E11C2002B09D4 /* MainViewVM.swift in Sources */,
 				67A328A02AD7AE52000ACC65 /* Utility.swift in Sources */,
 				67EFBE8C2B2AAD79007D2DFA /* SignUpView.swift in Sources */,
-				67BE73012B2F4D8A002B09D4 /* ExpenseResposne.swift in Sources */,
+				67BE73012B2F4D8A002B09D4 /* FoldersModel.swift in Sources */,
 				67EFBE8E2B2AAD90007D2DFA /* SignUpViewmodel.swift in Sources */,
 				67EFBE672B297008007D2DFA /* Header.swift in Sources */,
 				67BE72FF2B2E121A002B09D4 /* MainView.swift in Sources */,

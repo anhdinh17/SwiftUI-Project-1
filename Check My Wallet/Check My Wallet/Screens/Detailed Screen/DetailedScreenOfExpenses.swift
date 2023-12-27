@@ -13,21 +13,24 @@ struct DetailedScreenOfExpenses: View {
     @State var expenseArray: [ExpenseModel] = []
     var folderName: String
     var userID: String
+    var folderID: String
     
     var body: some View {
             List {
                 ForEach(expenseArray) { expense in
                     NavigationLink(value: expense) {
                         let dateSpendMoney = Utility.convertTimeIntervalToDateFormat(timeInterval: expense.dateSpendOn)
-                        ExpenseInfoRow(nameOfExpense: expense.nameOfExpense, amountSpent: expense.amoutExpense, dateSpentMoney: dateSpendMoney)
+                        ExpenseInfoRow(nameOfExpense: expense.nameOfExpense,
+                                       amountSpent: expense.amoutExpense,
+                                       dateSpentMoney: dateSpendMoney)
                     }
                 }
             }
-//            .onAppear{
-//                DataManager.shared.readDataFromEachFolder(folderID: idOfFolder, folderName: folderName, completion: { array in
-//                    self.expenseArray = array
-//                })
-//            }
+            .onAppear{
+                DataManager.shared.readDataFromOneFolder(userID: userID, folderID: folderID, folderName: folderName) { array in
+                    expenseArray = array
+                }
+            }
             .navigationDestination(for: ExpenseModel.self){ expense in
                 Text("\(expense.nameOfExpense)")
             }
@@ -44,7 +47,8 @@ struct DetailedScreenOfExpenses: View {
                 AddNewExpense(newItemPresented: $isAddButtonTapped,
                               expenseArray: $expenseArray,
                               folderName: self.folderName,
-                              userID: self.userID)
+                              userID: self.userID,
+                              folderID: self.folderID)
             }
             
             if expenseArray.count > 0 {
@@ -65,6 +69,6 @@ struct DetailedScreenOfExpenses: View {
 
 struct DetailedScreenOfExpenses_Previews: PreviewProvider {
     static var previews: some View {
-        DetailedScreenOfExpenses(folderName: "Whatever", userID: "")
+        DetailedScreenOfExpenses(folderName: "Whatever", userID: "", folderID: "")
     }
 }

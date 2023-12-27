@@ -8,9 +8,9 @@
 import Foundation
 import SwiftUI
 
-struct ExpenseResponse: Identifiable {
+struct FoldersModel: Identifiable, Hashable {
     var id = UUID()
     var folderName: String?
-    var detailedExpnese: ExpenseModel?
+    var folderIDFromDB: String?
 }
 

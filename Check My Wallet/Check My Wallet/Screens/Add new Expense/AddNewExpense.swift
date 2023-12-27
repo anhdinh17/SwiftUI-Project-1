@@ -14,9 +14,9 @@ struct AddNewExpense: View {
     @State var nameOfExpense: String = ""
     @State var amountSpent: String = ""
     @State var dateSpendMoney: Date = Date()
-    //var idOfFolder: String
     var folderName: String
     var userID: String
+    var folderID: String
     @State var isAlertOn: Bool = false
     
     var body: some View {
@@ -45,32 +45,20 @@ struct AddNewExpense: View {
                     let expenseModel = ExpenseModel(nameOfExpense: nameOfExpense,
                                                     amoutExpense: Double(amountSpent) ?? 0.00,
                                                     dateSpendOn: dateSpendMoney.timeIntervalSince1970)
-                    expenseArray.append(expenseModel)
                     
                     // Add to DB
                     DataManager.shared.addDetailsToEachFolderBasedOnUserID(userID: self.userID,
+                                                                           folderID: self.folderID,
                                                                            folderName: self.folderName,
-                                                                           expenseModel: expenseModel) { success in
+                                                                           expenseModel: expenseModel) { success,array in
                         if success {
+                            self.expenseArray = array
                             // Close pop-up sheet
                             self.newItemPresented = false
                         } else {
                             isAlertOn = true
                         }
                     }
-//
-//
-//
-//                    DataManager.shared.add(folderName: self.folderName,
-//                                                          id: self.idOfFolder,
-//                                                          expenseModel: expenseModel) { success in
-//                        if success {
-//                            // Close pop-up sheet
-//                            self.newItemPresented = false
-//                        } else {
-//                            isAlertOn = true
-//                        }
-//                    }
                 }label: {
                     Text("Add")
                         .bold()
@@ -90,6 +78,7 @@ struct AddNewExpense_Previews: PreviewProvider {
         AddNewExpense(newItemPresented: .constant(false),
                       expenseArray: .constant([ExpenseModel(nameOfExpense: "Coffee", amoutExpense: 5.00, dateSpendOn: Date().timeIntervalSince1970)]),
                       folderName: "abc",
-                      userID: "")
+                      userID: "",
+                      folderID: "")
     }
 }

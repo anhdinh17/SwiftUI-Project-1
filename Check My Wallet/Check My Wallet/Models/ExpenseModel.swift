@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ExpenseModel: Hashable, Identifiable {
-    let id = UUID()
+    let id = UUID().uuidString
     let nameOfExpense: String
     let amoutExpense: Double
     // Use TimeInterval to save to DB

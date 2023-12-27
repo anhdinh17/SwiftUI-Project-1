@@ -11,7 +11,7 @@ import FirebaseAuth
 struct ExpenseHomeView: View {
     
     @State var isAddButtonTapped: Bool = false
-    @State var folderArray: [ExpenseFolder] = []
+    @State var folderArray: [FoldersModel] = []
     @State var showAddFolderAlert: Bool = false
     @StateObject var viewModel = ExpenseHomeViewViewModel()
     
@@ -20,14 +20,15 @@ struct ExpenseHomeView: View {
             List {
                 ForEach(folderArray) { eachFolder in
                     NavigationLink(value: eachFolder) {
-                        Text("\(eachFolder.name)")
+                        Text(eachFolder.folderName ?? "")
                     }
                 }
             }
             .navigationTitle("Home")
-            .navigationDestination(for: ExpenseFolder.self){ folderName in
-                DetailedScreenOfExpenses(folderName: folderName.name,
-                                         userID: viewModel.userID)
+            .navigationDestination(for: FoldersModel.self){ folderName in
+                DetailedScreenOfExpenses(folderName: folderName.folderName ?? "",
+                                         userID: viewModel.userID,
+                                         folderID: folderName.folderIDFromDB ?? "")
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -56,8 +57,10 @@ struct ExpenseHomeView: View {
             Button("Add", action: {
                 // Tap Add button of alert
                 if !viewModel.folderName.isEmpty {
+                    // Create a folder object
+                    let folder = ExpenseFolder(name: viewModel.folderName)
                     // save to database
-                    DataManager.shared.createExpenseFolderWithUserID(id: viewModel.userID, folderName: viewModel.folderName, completion: { result,array in
+                    DataManager.shared.createExpenseFolderWithUserID(userID: viewModel.userID, expenseFolder: folder, completion: { result,array in
                         if result {
                             self.folderArray = array
                         } else {
