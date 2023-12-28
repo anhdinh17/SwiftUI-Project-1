@@ -146,10 +146,10 @@ class DataManager {
     //MARK: With Login screen
     //=======================================================================================================
     
-    func createUserInDB(id: String, username: String) {
+    func createUserInDB(id: String, username: String, email: String) {
         // Create "username" node and "folders" node
         // "folders" node lúc này empty vì mới tạo account
-        databaseRef.child("Users").child(id).setValue(["username":username, "folders": ""])
+        databaseRef.child("Users").child(id).setValue(["username":username, "folders": "", "email":email])
     }
     
     // Create ExpenseFolder with ID of user

@@ -14,9 +14,24 @@ struct MainView: View {
         // If users signed in AND currentUserId not empty,
         // show ExpenseHomeView
         if viewModel.isSignedIn, !viewModel.currentUserId.isEmpty {
-            ExpenseHomeView()
+            accountView
         } else {
             LoginView()
+        }
+    }
+    
+    @ViewBuilder var accountView: some View {
+        // Signed In
+        TabView {
+            ExpenseHomeView()
+                .tabItem{
+                    Label("Home", systemImage: "house")
+                }
+            
+            ProfileView()
+                .tabItem{
+                    Label("Profile", systemImage: "person.circle")
+                }
         }
     }
 }

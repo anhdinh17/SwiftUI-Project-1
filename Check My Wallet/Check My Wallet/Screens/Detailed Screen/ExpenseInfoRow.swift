@@ -24,6 +24,7 @@ struct ExpenseInfoRow: View {
             
             HStack {
                 Text("Amount:")
+                    .fontWeight(.semibold)
                 
                 Spacer()
                 
@@ -32,7 +33,7 @@ struct ExpenseInfoRow: View {
             
             HStack {
                 Text("Date:")
-                
+                    .fontWeight(.semibold)
                 Spacer()
                 
                 Text(dateSpentMoney)

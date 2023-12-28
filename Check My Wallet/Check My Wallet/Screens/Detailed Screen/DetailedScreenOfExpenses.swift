@@ -31,9 +31,9 @@ struct DetailedScreenOfExpenses: View {
                     expenseArray = array
                 }
             }
-            .navigationDestination(for: ExpenseModel.self){ expense in
-                Text("\(expense.nameOfExpense)")
-            }
+//            .navigationDestination(for: ExpenseModel.self){ expense in
+//                Text("\(expense.nameOfExpense)")
+//            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {

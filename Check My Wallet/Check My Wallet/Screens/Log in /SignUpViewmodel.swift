@@ -21,18 +21,27 @@ class SignUpViewModel: ObservableObject {
         }
         
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
-            // Get the ID created by Firebase for user
-            guard let userID = result?.user.uid else {
-                return
+            if error == nil {
+                // Get the ID created by Firebase for user
+                guard let userID = result?.user.uid else {
+                    return
+                }
+                
+                // Create a username in Realtime Database
+                self?.createUserInDB(id: userID, username: self?.name ?? "", userEmail: self?.email ?? "")
+                
+                // Save email and username to UserDefault for easy use
+                UserDefaults.standard.set(self?.email, forKey: "userEmail")
+                UserDefaults.standard.set(self?.name, forKey: "userName")
+            } else {
+                print(error?.localizedDescription)
             }
-            
-            // Create a username in Realtime Database
-            self?.createUserInDB(id: userID, username: self?.name ?? "")
+
         }
     }
     
-    func createUserInDB(id: String, username: String) {
-        DataManager.shared.createUserInDB(id: id, username: username)
+    func createUserInDB(id: String, username: String, userEmail: String) {
+        DataManager.shared.createUserInDB(id: id, username: username, email: userEmail)
     }
     
     // Validate all the fields

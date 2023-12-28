@@ -39,12 +39,6 @@ struct ExpenseHomeView: View {
                     }
                 }
             }
-            
-            Button {
-                try? Auth.auth().signOut()
-            } label: {
-                Text("Sign Out")
-            }
         }
         .onAppear{
             // Fetch data from Realtime DB respect to current user
