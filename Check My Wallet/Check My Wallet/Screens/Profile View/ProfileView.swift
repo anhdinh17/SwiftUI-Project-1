@@ -61,6 +61,13 @@ struct ProfileView: View {
                 }
                 .padding()
 
+                // Test Button to upload image to Storage
+                StandardButton(title: "Upload Image",
+                               backgroundColor: .pink) {
+                    // Upload Image
+                    viewModel.uploadImage(selectedImage: self.userImage)
+                }
+                
                 
                 StandardButton(title: "Sign Out",
                                backgroundColor: .red) {

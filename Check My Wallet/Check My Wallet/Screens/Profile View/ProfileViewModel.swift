@@ -7,6 +7,8 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 class ProfileViewModel: ObservableObject {
     
@@ -38,5 +40,26 @@ class ProfileViewModel: ObservableObject {
         var username = ""
         username = UserDefaults.standard.object(forKey: "userName") as? String ?? ""
         return username
+    }
+    
+    func uploadImage(selectedImage: UIImage) {
+        // Create a reference to Storage
+        let storageRef = Storage.storage().reference()
+        
+        // Turn our image into Data type
+        guard let imageData = selectedImage.jpegData(compressionQuality: 0.8) else {
+            return
+        }
+        
+        // Specify the file path and name
+        // Cach tao path nay voi child("images/\(UUID().uuidString).jpg") la giong nhau
+        let fileRef = storageRef.child("images").child("\(UUID().uuidString).jpg")
+        
+        // Upload image
+        let uploadTask = fileRef.putData(imageData, metadata: nil) { metaData, error in
+            if error == nil && metaData != nil {
+                // TODO: save image to Realtime Database
+            }
+        }
     }
 }
