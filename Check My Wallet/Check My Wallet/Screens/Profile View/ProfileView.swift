@@ -68,6 +68,7 @@ struct ProfileView: View {
                     viewModel.uploadImage(selectedImage: self.userImage)
                 }
                 
+                Spacer()
                 
                 StandardButton(title: "Sign Out",
                                backgroundColor: .red) {
@@ -78,6 +79,19 @@ struct ProfileView: View {
                 //            }
             }
             .navigationTitle("Profile")
+        }
+        .onAppear {
+            // Fetch Image
+            // Moi lan dau vo screen nay thi xai userImage cua screen nay
+            // Neu upload xong va khi quay lai screen nay thi xai viewModel.userImage
+            viewModel.downloadImage {
+                if let image = viewModel.userImage {
+                    DispatchQueue.main.async {
+                        // set userImage = viewModel.userImage
+                        self.userImage = image
+                    }
+                }
+            }
         }
         .actionSheet(isPresented: $showPhotoOptions) {
             ActionSheet(title: Text("Choose your photo source"),

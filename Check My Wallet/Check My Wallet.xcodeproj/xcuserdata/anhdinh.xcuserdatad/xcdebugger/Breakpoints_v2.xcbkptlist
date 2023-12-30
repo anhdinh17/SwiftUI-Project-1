@@ -312,14 +312,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1FDCA8DD-6EF2-4546-8D36-3892CEF25DFB"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Check My Wallet/Screens/Log in /SignUpViewmodel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "registerAccount()"
             landmarkType = "7">
             <Locations>
@@ -353,6 +353,21 @@
                   endingLineNumber = "37"
                   offsetFromSymbolStart = "2818">
                </Location>
+               <Location
+                  uuid = "1FDCA8DD-6EF2-4546-8D36-3892CEF25DFB - 19d13096be279ddf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Check_My_Wallet.SignUpViewModel.registerAccount() -&gt; ()"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Screens/Log%20in%20/SignUpViewmodel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "3040">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -360,7 +375,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "B3B5A3BA-37C8-4138-B03B-DE022CF3F85D"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Check My Wallet/Screens/Log in /SignUpViewmodel.swift"
@@ -386,6 +401,69 @@
             endingLineNumber = "68"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C2644997-1010-4D8C-AADD-63E01D5F9616"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Check My Wallet/Screens/Profile View/ProfileViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "uploadImage(selectedImage:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "C2644997-1010-4D8C-AADD-63E01D5F9616 - 2724eb217ece14ed"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Check_My_Wallet.ProfileViewModel.uploadImage(selectedImage: __C.UIImage) -&gt; ()"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Screens/Profile%20View/ProfileViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "1792">
+               </Location>
+               <Location
+                  uuid = "C2644997-1010-4D8C-AADD-63E01D5F9616 - 5686fab428f4457a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;FirebaseStorage.StorageMetadata&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Check_My_Wallet.ProfileViewModel.uploadImage(selectedImage: __C.UIImage) -&gt; ()"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Screens/Profile%20View/ProfileViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "C2644997-1010-4D8C-AADD-63E01D5F9616 - 2724eb217ece14ed"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Check_My_Wallet.ProfileViewModel.uploadImage(selectedImage: __C.UIImage) -&gt; ()"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Screens/Profile%20View/ProfileViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "1149">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

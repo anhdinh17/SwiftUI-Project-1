@@ -30,9 +30,10 @@ class SignUpViewModel: ObservableObject {
                 // Create a username in Realtime Database
                 self?.createUserInDB(id: userID, username: self?.name ?? "", userEmail: self?.email ?? "")
                 
-                // Save email and username to UserDefault for easy use
+                // Save email,username,userID to UserDefault for easy use
                 UserDefaults.standard.set(self?.email, forKey: "userEmail")
                 UserDefaults.standard.set(self?.name, forKey: "userName")
+                UserDefaults.standard.set(userID, forKey: "userID")
             } else {
                 print(error?.localizedDescription)
             }
