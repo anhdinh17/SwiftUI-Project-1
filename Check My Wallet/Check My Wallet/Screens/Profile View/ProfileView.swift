@@ -23,50 +23,46 @@ struct ProfileView: View {
     @State private var photoSource: PhotoSource?
     // The reason why we store the image as an UIImage object is that the image returned from the photo library also has a type of UIImage.
     @State private var userImage = UIImage(systemName: "person.circle")!
+    @State var isSaveButtonDisabled: Bool = true
     
     var body: some View {
         NavigationStack {
             VStack {
                 // Check if user is signed in
                 //            if viewModel.isSignedIn {
-                Image(uiImage: userImage)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 120, height: 120)
-                    .clipShape(Circle())
-                    .onTapGesture {
-                        self.showPhotoOptions.toggle()
-                    }
-                
-                VStack(alignment: .leading) {
-                    HStack{
-                        Text("Name: ")
-                            .bold()
-                        Text(viewModel.getUserName())
+                VStack(spacing: -10) {
+                    Image(uiImage: userImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 120, height: 120)
+                        .clipShape(Circle())
+                    
+                    VStack(alignment: .leading, spacing: -30) {
+                        HStack{
+                            Text("Name: ")
+                                .bold()
+                            Text(viewModel.getUserName())
+                        }
+                        .padding()
+                        
+                        HStack{
+                            Text("Email: ")
+                                .bold()
+                            Text(viewModel.getUserEmail())
+                        }
+                        .padding()
                     }
                     .padding()
                     
-                    HStack{
-                        Text("Email: ")
-                            .bold()
-                        Text(viewModel.getUserEmail())
+                    // Click here to select how users want to choose new photo
+                    StandardButton(title: "Update Image",
+                                   backgroundColor: .blue) {
+                        self.showPhotoOptions.toggle()
                     }
-                    .padding()
-    //
-    //                HStack{
-    //                    Text("Member since: ")
-    //                        .bold()
-    //                }
-    //                .padding()
+                                   .padding(.top, -20)
                 }
-                .padding()
+                
 
-                // Test Button to upload image to Storage
-                StandardButton(title: "Upload Image",
-                               backgroundColor: .pink) {
-                    // Upload Image
-                    viewModel.uploadImage(selectedImage: self.userImage)
-                }
                 
                 Spacer()
                 
@@ -79,10 +75,23 @@ struct ProfileView: View {
                 //            }
             }
             .navigationTitle("Profile")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        // Upload image to Firebase Storage
+                        viewModel.uploadImage(selectedImage: self.userImage)
+                        self.isSaveButtonDisabled = true
+                    } label: {
+                        Text("Save")
+                            .fontWeight(.semibold)
+                    }
+                    .disabled(isSaveButtonDisabled)
+                }
+            }
         }
         .onAppear {
             // Fetch Image
-            // Moi lan dau vo screen nay thi xai userImage cua screen nay
+            // Moi lan dau vo screen nay thi xai userImage w/ person.circle cua screen nay
             // Neu upload xong va khi quay lai screen nay thi xai viewModel.userImage
             viewModel.downloadImage {
                 if let image = viewModel.userImage {
@@ -97,6 +106,7 @@ struct ProfileView: View {
             ActionSheet(title: Text("Choose your photo source"),
                         message: nil,
                         buttons: [
+                            // photoSource chuyển từ nil sang giá trị khác
                             .default(Text("Camera")) {
                                 self.photoSource = .camera
                             },
@@ -109,12 +119,15 @@ struct ProfileView: View {
         /*
          - Thằng này observe "photoSource"
          - Khi mới vô, photoSource là nil.
-         - Click on image -> actionSheet -> chọn 1 option -> photoSource sẽ thay đổi giá trị từ nil sang photoLibrary/camera -> .fullScreenCover triggered
+         - Click on update image -> actionSheet -> chọn 1 option -> photoSource sẽ thay đổi giá trị từ nil sang photoLibrary/camera -> .fullScreenCover triggered
+         - Sau khi chọn hình mới xong thì userImage sẽ có hình mới (vì bind với selectedImage trong ImagePicker) -> hiện hình mới chọn.
          */
         .fullScreenCover(item: $photoSource) { source in
             switch source {
-            case .photoLibrary: ImagePicker(sourceType: .photoLibrary, selectedImage: $userImage).ignoresSafeArea()
-            case .camera: ImagePicker(sourceType: .camera, selectedImage: $userImage).ignoresSafeArea()
+            case .photoLibrary:
+                ImagePicker(sourceType: .photoLibrary, selectedImage: $userImage, isSaveButtonDisabled: $isSaveButtonDisabled).ignoresSafeArea()
+            case .camera:
+                ImagePicker(sourceType: .camera, selectedImage: $userImage, isSaveButtonDisabled: $isSaveButtonDisabled).ignoresSafeArea()
             }
         }
     }

@@ -18,6 +18,9 @@ struct ImagePicker: UIViewControllerRepresentable {
     @Binding var selectedImage: UIImage
     @Environment(\.dismiss) private var dismiss
     
+    // Thêm vào variable để disable or enalbe Save button
+    @Binding var isSaveButtonDisabled: Bool
+    
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
         
         let imagePicker = UIImagePickerController()
@@ -51,7 +54,10 @@ struct ImagePicker: UIViewControllerRepresentable {
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                // set "selectedImage" cua ImagePicker = image moi chup or choose from Photo Library
                 parent.selectedImage = image
+                // enable Save button, change value of isSaveButtonDisabled in ProfileView as well.
+                parent.isSaveButtonDisabled = false
             }
             
             parent.dismiss()
