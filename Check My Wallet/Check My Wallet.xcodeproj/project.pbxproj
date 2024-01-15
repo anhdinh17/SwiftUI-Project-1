@@ -35,6 +35,10 @@
 		670E80D02AA4F99100292A39 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670E80CF2AA4F99100292A39 /* DataManager.swift */; };
 		670E80D22AA4FAD200292A39 /* ExpenseHomeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670E80D12AA4FAD200292A39 /* ExpenseHomeViewViewModel.swift */; };
 		670E80D42AA5891900292A39 /* ExpenseFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670E80D32AA5891900292A39 /* ExpenseFolder.swift */; };
+		67343E982B4A52EE00F1AA9E /* SpendingDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67343E972B4A52EE00F1AA9E /* SpendingDataController.swift */; };
+		67343E9A2B4A56B900F1AA9E /* Checkmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67343E992B4A56B900F1AA9E /* Checkmark.swift */; };
+		67343E9C2B4A587700F1AA9E /* DetailedScreenOfExpensesVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67343E9B2B4A587700F1AA9E /* DetailedScreenOfExpensesVM.swift */; };
+		677DF4922B54E2F700805258 /* AddNewExpenseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677DF4912B54E2F700805258 /* AddNewExpenseVM.swift */; };
 		6794F4E92A96F3B300053505 /* Check_My_WalletApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6794F4E82A96F3B300053505 /* Check_My_WalletApp.swift */; };
 		6794F4EB2A96F3B300053505 /* ExpenseHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6794F4EA2A96F3B300053505 /* ExpenseHomeView.swift */; };
 		6794F4ED2A96F3B500053505 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6794F4EC2A96F3B500053505 /* Assets.xcassets */; };
@@ -65,6 +69,10 @@
 		670E80CF2AA4F99100292A39 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		670E80D12AA4FAD200292A39 /* ExpenseHomeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseHomeViewViewModel.swift; sourceTree = "<group>"; };
 		670E80D32AA5891900292A39 /* ExpenseFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseFolder.swift; sourceTree = "<group>"; };
+		67343E972B4A52EE00F1AA9E /* SpendingDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingDataController.swift; sourceTree = "<group>"; };
+		67343E992B4A56B900F1AA9E /* Checkmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checkmark.swift; sourceTree = "<group>"; };
+		67343E9B2B4A587700F1AA9E /* DetailedScreenOfExpensesVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedScreenOfExpensesVM.swift; sourceTree = "<group>"; };
+		677DF4912B54E2F700805258 /* AddNewExpenseVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewExpenseVM.swift; sourceTree = "<group>"; };
 		6794F4E52A96F3B300053505 /* Check My Wallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Check My Wallet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6794F4E82A96F3B300053505 /* Check_My_WalletApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Check_My_WalletApp.swift; sourceTree = "<group>"; };
 		6794F4EA2A96F3B300053505 /* ExpenseHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseHomeView.swift; sourceTree = "<group>"; };
@@ -138,6 +146,7 @@
 			children = (
 				670E809B2AA4E14F00292A39 /* DetailedScreenOfExpenses.swift */,
 				6794F4FC2A97128200053505 /* ExpenseInfoRow.swift */,
+				67343E9B2B4A587700F1AA9E /* DetailedScreenOfExpensesVM.swift */,
 			);
 			path = "Detailed Screen";
 			sourceTree = "<group>";
@@ -146,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				6794F4F72A97003000053505 /* AddNewExpense.swift */,
+				677DF4912B54E2F700805258 /* AddNewExpenseVM.swift */,
 			);
 			path = "Add new Expense";
 			sourceTree = "<group>";
@@ -154,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				670E80CF2AA4F99100292A39 /* DataManager.swift */,
+				67343E972B4A52EE00F1AA9E /* SpendingDataController.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -275,6 +286,7 @@
 				67EFBE662B297008007D2DFA /* Header.swift */,
 				67EFBE8F2B2AB235007D2DFA /* TLButton.swift */,
 				67CBD6D12B3BDC7E0090982F /* StandardButton.swift */,
+				67343E992B4A56B900F1AA9E /* Checkmark.swift */,
 			);
 			path = "Others ";
 			sourceTree = "<group>";
@@ -400,8 +412,10 @@
 				67EFBE6A2B297213007D2DFA /* LoginViewModel.swift in Sources */,
 				6794F4FB2A970BB000053505 /* ExpenseModel.swift in Sources */,
 				67EFBE902B2AB235007D2DFA /* TLButton.swift in Sources */,
+				67343E982B4A52EE00F1AA9E /* SpendingDataController.swift in Sources */,
 				67EFBE642B295542007D2DFA /* LoginView.swift in Sources */,
 				670E80D02AA4F99100292A39 /* DataManager.swift in Sources */,
+				67343E9C2B4A587700F1AA9E /* DetailedScreenOfExpensesVM.swift in Sources */,
 				67C370F32B18437A0005D45C /* ChartView.swift in Sources */,
 				6794F4E92A96F3B300053505 /* Check_My_WalletApp.swift in Sources */,
 				67CBD6D02B3BD8C70090982F /* ProfileViewModel.swift in Sources */,
@@ -409,6 +423,8 @@
 				67CBD6D42B3D31270090982F /* ImagePicker.swift in Sources */,
 				67CBD6CE2B3BD8B70090982F /* ProfileView.swift in Sources */,
 				670E809C2AA4E14F00292A39 /* DetailedScreenOfExpenses.swift in Sources */,
+				677DF4922B54E2F700805258 /* AddNewExpenseVM.swift in Sources */,
+				67343E9A2B4A56B900F1AA9E /* Checkmark.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

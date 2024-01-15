@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct AddNewExpense: View {
-    
-    @Binding var newItemPresented: Bool
+    @StateObject var viewModel = AddNewExpenseVM()
+    @Binding var isAddButtonTapped: Bool
     @Binding var expenseArray: [ExpenseModel]
     @State var nameOfExpense: String = ""
     @State var amountSpent: String = ""
@@ -18,6 +18,8 @@ struct AddNewExpense: View {
     var userID: String
     var folderID: String
     @State var isAlertOn: Bool = false
+    // Binding total spending to use for viewModel.totalSpending in DetailedScreen
+    @Binding var totalSpending: Double
     
     var body: some View {
         VStack {
@@ -52,9 +54,14 @@ struct AddNewExpense: View {
                                                                            folderName: self.folderName,
                                                                            expenseModel: expenseModel) { success,array in
                         if success {
+                            // Nhận về 1 array, "expenseArray" bind với "expenseArray" ở DetailedScreen => expenseArray ở DetailedScreen sẽ thay đổi => fetch tableView với new row
                             self.expenseArray = array
+                            
+                            // Calculate new total spending after hitting Add so that we can have new total spending for DetailedScreen
+                            self.totalSpending = SpendingDataController.shared.calculateTotalSpending(arrayOfSepnding: array)
+                            
                             // Close pop-up sheet
-                            self.newItemPresented = false
+                            self.isAddButtonTapped = false
                         } else {
                             isAlertOn = true
                         }
@@ -75,10 +82,11 @@ struct AddNewExpense: View {
 
 struct AddNewExpense_Previews: PreviewProvider {
     static var previews: some View {
-        AddNewExpense(newItemPresented: .constant(false),
+        AddNewExpense(isAddButtonTapped: .constant(false),
                       expenseArray: .constant([ExpenseModel(nameOfExpense: "Coffee", amoutExpense: 5.00, dateSpendOn: Date().timeIntervalSince1970)]),
                       folderName: "abc",
                       userID: "",
-                      folderID: "")
+                      folderID: "",
+                      totalSpending: .constant(0.0))
     }
 }
