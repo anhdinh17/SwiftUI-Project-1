@@ -153,9 +153,9 @@ class DataManager {
     }
     
     // Create ExpenseFolder with ID of user
-    // Under node ID at this point, there is dictionary of ["username": <username>, "folders": ""]
+    // Under node ID at this point, there is dictionary of ["username": <username>, "folders": "", emai: <user's email>]
     /**
-     - Voi func nay minh tra ve 1 arry FoldersModel. Nguyen nhan la luc dau cu tuong neu tra ve array cua ExpenseFolder this se bi vuong "id= UUID" trong ExpenseFolder + minh can 1 object voi var of fixed ID from DB.
+     - Voi func nay minh tra ve 1 arry FoldersModel. Nguyen nhan la neu tra ve array cua ExpenseFolder thi se bi vuong "id= UUID" trong ExpenseFolder + minh can 1 object voi var of fixed ID from DB.
      - Nhung hay suy nghi: Khi tao 1 object ExpenseFolder o ExpenseHomeView de day len DB, moi object se co var id, minh se dung var id do de tao id cho tung folder. Sau khi xong xuoi het, neu minh lai tao object cua ExpenseFolder va tra ve trong call back, var id luc nay ko anh huong gi het ma chi dung cho List cong them minh van co the pass vo fixed ID tu DB cho object nay => Ap dung logic nay cho addDetailsToEachFolderBasedOnUserID
      */
     func createExpenseFolderWithUserID(userID: String, expenseFolder: ExpenseFolder, completion: @escaping ((Bool,[FoldersModel]) -> Void)){
@@ -167,7 +167,9 @@ class DataManager {
             guard var dictionary = snapshot.value as? [String:Any] else {
                 // If there's nothing under "folders" (first time creating)
                 let addedFolder = [
-                    expenseFolder.id : [expenseFolder.name:""]
+                    expenseFolder.id : [expenseFolder.name : "",
+                                        "isBudgetSet" : false]
+                    // Dưới mỗi folder ID sẽ có folder name và var isBudgetSet cho folder name đó
                 ]
                 self?.databaseRef.child("Users").child(userID).child("folders").setValue(addedFolder) { error, _ in
                     if error != nil {
@@ -187,7 +189,8 @@ class DataManager {
             // Neu duoi "folders" da co folder nao do roi
             // Thi add them key-value
             dictionary[expenseFolder.id] = [
-                expenseFolder.name : ""
+                expenseFolder.name : "",
+                "isBudgetSet" : false
             ]
             self?.databaseRef.child("Users").child(userID).child("folders").setValue(dictionary) { error, _ in
                 if error != nil {
@@ -228,7 +231,12 @@ class DataManager {
                 guard let subDict = value as? [String:Any] else {
                     return
                 }
-                let folderName = subDict.keys.first
+                /**
+                 - subDict.keys trả về 1 array của tất cả key
+                 - phải filter array này để chỉ lấy folder name
+                 */
+                let folderNameArray = subDict.keys.filter({$0 != "isBudgetSet"})
+                let folderName = folderNameArray.first
                 let folder = FoldersModel(folderName: folderName, folderIDFromDB: folderID)
                 expenseFolderArray.append(folder)
             }
@@ -281,7 +289,9 @@ class DataManager {
                         
                         // Khi minh tao instance cua ExpenseModel de tra ve, luc nay
                         // minh ko can quan tam var id cua ExpenseModel, no se duoc dung cho List cua screen.
-                        let expense = ExpenseModel(nameOfExpense: productName, amoutExpense: dictUnderProduct["Amount"] as! Double, dateSpendOn: dictUnderProduct["Date"] as! TimeInterval)
+                        let expense = ExpenseModel(nameOfExpense: productName,
+                                                   amoutExpense: dictUnderProduct["Amount"] as! Double,
+                                                   dateSpendOn: dictUnderProduct["Date"] as! TimeInterval)
                         expenseArray.append(expense)
                     }
                     completion(true,expenseArray)
@@ -293,32 +303,64 @@ class DataManager {
     }
     
     // Read all products from 1 folder
-    func readDataFromOneFolder(userID: String, folderID: String, folderName: String, completion: @escaping ([ExpenseModel])->Void) {
+    // Bool trả về là bool của isBudgetSet
+    func readDataFromOneFolder(userID: String, folderID: String, folderName: String, completion: @escaping ([ExpenseModel],Bool)->Void) {
         var expenseArray: [ExpenseModel] = []
-        databaseRef.child("Users").child(userID).child("folders").child(folderID).child(folderName).observeSingleEvent(of: .value, with: { [weak self] snapshot in
+        
+        // Read the isBudgetSet first
+        var isBudgetSet: Bool = false
+        databaseRef.child("Users").child(userID).child("folders").child(folderID).observeSingleEvent(of: .value, with: { [weak self] snapshot  in
+            // What under folder's ID
             guard let dictionary = snapshot.value as? [String:Any] else {
-                completion([])
                 return
             }
+            guard let boolValue = dictionary["isBudgetSet"] as? Int else {
+                return
+            }
+            isBudgetSet = boolValue == 1 ? true : false
             
-            for (key,value) in dictionary {
-                let whatYouBoughtID = key
-                // SubDict = dictionary under productID
-                guard let dictUnderProductID = value as? [String:Any] else {
-                    return
-                }
-                let productName = dictUnderProductID.keys.first ?? ""
-                guard let dictUnderProduct = dictUnderProductID[productName] as? [String:Any] else {
+            /**
+             - Để thằng này trong đây vì ta muốn lấy isBudgetSet first, sau đó mới run thằng này.
+             - Nếu để thằng này ở ngoài thì call back của thằng này chạy trước => trả về completion xong hết trơn rồi nó mới chạy call back của thằng trên => isBudgetSet luôn luôn ko về được screen.
+             */
+            self?.databaseRef.child("Users").child(userID).child("folders").child(folderID).child(folderName).observeSingleEvent(of: .value, with: { [weak self] snapshot in
+                guard let dictionary = snapshot.value as? [String:Any] else {
+                    completion([],isBudgetSet)
                     return
                 }
                 
-                // Khi minh tao instance cua ExpenseModel de tra ve, luc nay
-                // minh ko can quan tam var id cua ExpenseModel, no se duoc dung cho List cua screen.
-                let expense = ExpenseModel(nameOfExpense: productName, amoutExpense: dictUnderProduct["Amount"] as! Double, dateSpendOn: dictUnderProduct["Date"] as! TimeInterval)
-                expenseArray.append(expense)
-            }
-            completion(expenseArray)
+                for (key,value) in dictionary {
+                    let whatYouBoughtID = key
+                    // SubDict = dictionary under productID
+                    guard let dictUnderProductID = value as? [String:Any] else {
+                        return
+                    }
+                    let productName = dictUnderProductID.keys.first ?? ""
+                    guard let dictUnderProduct = dictUnderProductID[productName] as? [String:Any] else {
+                        return
+                    }
+                    
+                    // Khi minh tao instance cua ExpenseModel de tra ve, luc nay
+                    // minh ko can quan tam var id cua ExpenseModel, no se duoc dung cho List cua screen.
+                    let expense = ExpenseModel(nameOfExpense: productName,
+                                               amoutExpense: dictUnderProduct["Amount"] as! Double,
+                                               dateSpendOn: dictUnderProduct["Date"] as! TimeInterval)
+                    expenseArray.append(expense)
+                }
+                completion(expenseArray,isBudgetSet)
+            })
         })
     }
     
+    // Change isBudgetSet in Realtime DB
+    func updateIsBudgetSet(userID: String, folderID: String, valueOfSwitch: Bool, completion: @escaping ((Bool) -> Void) ) {
+        databaseRef.child("Users").child(userID).child("folders").child(folderID).child("isBudgetSet").setValue(valueOfSwitch) { [weak self] error, _ in
+            if error == nil {
+                completion(valueOfSwitch)
+            } else {
+                print("ERROR: \(error?.localizedDescription)")
+            }
+        }
+    }
+
 }

@@ -13,6 +13,7 @@ struct DetailedScreenOfExpenses: View {
     @State var expenseArray: [ExpenseModel] = []
     @State var isBudgetTextShown: Bool = false
     @State var tempBudget: String = ""
+    @State var isBudgetSet: Bool = false
     var folderName: String
     var userID: String
     var folderID: String
@@ -36,10 +37,11 @@ struct DetailedScreenOfExpenses: View {
                         Text("Do you want to set a budget?")
                     }
                     .onChange(of: viewModel.isSetBudget) { newValue in
-                        // What happens when isSetBudget is True or False
-                        // "newValue" is True or False when switch is on or off.
-                        print("ViewModel isSetBudget = \(newValue)")
-                        viewModel.checkBudget()
+                        // newValue = false/true if switch is Off/On
+                        // Change value of isBudgetSet in Realtime Database
+                        DataManager.shared.updateIsBudgetSet(userID: self.userID, folderID: self.folderID, valueOfSwitch: newValue) { isBudgetSet in
+                            self.viewModel.isSetBudget = isBudgetSet
+                        }
                     }
                     
                     // If switch is ON
@@ -92,18 +94,42 @@ struct DetailedScreenOfExpenses: View {
                         .font(.title3)
                         .fontWeight(.medium)
                 }
+            } footer: {
+                if expenseArray.count > 0 {
+                    HStack {
+                        Spacer()
+                        
+                        // Click on button to go to ChartView
+                        // Using NavigationLink
+                        NavigationLink(destination: ChartView(expenseArray: self.expenseArray)) {
+                            Text("See Charts")
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .frame(width: 260, height: 50)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        
+                        Spacer()
+                    }
+                }
             }
         }
         .onAppear{
-            DataManager.shared.readDataFromOneFolder(userID: userID, folderID: folderID, folderName: folderName) { array in
-                expenseArray = array
-                // Caculate total spending after we get the array when getting to this screen.
-                viewModel.totalSpending = SpendingDataController.shared.calculateTotalSpending(arrayOfSepnding: array)
+            // Mới vô thì lấy array từ DB.
+            // calculate total spending
+            // lấy isBudgetSet từ DB để display Switch.
+            DataManager.shared.readDataFromOneFolder(userID: userID, folderID: folderID, folderName: folderName) { array, isBudgetSet in
+                DispatchQueue.main.async {
+                    expenseArray = array
+                    // Caculate total spending after we get the array when getting to this screen.
+                    viewModel.totalSpending = SpendingDataController.shared.calculateTotalSpending(arrayOfSepnding: array)
+                    // Value of isBudgetSet
+                    self.viewModel.isSetBudget = isBudgetSet
+                }
             }
         }
-        //            .navigationDestination(for: ExpenseModel.self){ expense in
-        //                Text("\(expense.nameOfExpense)")
-        //            }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
@@ -124,20 +150,6 @@ struct DetailedScreenOfExpenses: View {
 //        .alert("Add Budget", isPresented: $viewModel.isSetBudget) {
 //            TextField("Please enter your budget", text: $viewModel.budget)
 //        }
-        
-        if expenseArray.count > 0 {
-            // Click on button to go to ChartView
-            // Using NavigationLink
-            NavigationLink(destination: ChartView(expenseArray: self.expenseArray)) {
-                Text("See Charts")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .frame(width: 260, height: 50)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-            }
-        }
     }
 }
 
