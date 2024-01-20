@@ -20,6 +20,8 @@ struct AddNewExpense: View {
     @State var isAlertOn: Bool = false
     // Binding total spending to use for viewModel.totalSpending in DetailedScreen
     @Binding var totalSpending: Double
+    // Binding this Bool to check if total spending is over budget so that we can show alert in DetailedScreen
+    @Binding var isTotalSpendingOverBudget: Bool
     
     var body: some View {
         VStack {

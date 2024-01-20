@@ -7,13 +7,17 @@
 
 import SwiftUI
 
+/**
+ - viewModel.budget lúc mới vào sẽ được fetch từ DB. Default value là 0.0 khi mới tạo folder.
+ */
+
 struct DetailedScreenOfExpenses: View {
     @StateObject var viewModel = DetailedScreenOfExpensesVM()
     @State var isAddButtonTapped: Bool = false
     @State var expenseArray: [ExpenseModel] = []
     @State var isBudgetTextShown: Bool = false
-    @State var tempBudget: String = ""
-    @State var isBudgetSet: Bool = false
+    @State var isTotalSpendingOverBudget: Bool = false
+    @FocusState var isBudgetTextFieldFocus: Bool
     var folderName: String
     var userID: String
     var folderID: String
@@ -22,7 +26,7 @@ struct DetailedScreenOfExpenses: View {
         List {
             // Put things to Section to use Header
             Section {
-                ForEach(expenseArray) { expense in
+                ForEach(viewModel.expenseArray) { expense in
                     NavigationLink(value: expense) {
                         let dateSpendMoney = Utility.convertTimeIntervalToDateFormat(timeInterval: expense.dateSpendOn)
                         ExpenseInfoRow(nameOfExpense: expense.nameOfExpense,
@@ -51,14 +55,15 @@ struct DetailedScreenOfExpenses: View {
                             HStack {
                                 Spacer()
                                 
-                                TextField("Enter Your Budget", text: $tempBudget)
+                                TextField("Enter Your Budget", value: $viewModel.budget, format: .number)
+                                    // tap on textField => isBudgetTextFieldFocus = true
+                                    .focused($isBudgetTextFieldFocus)
                                     .frame(height: 30)
                                     .background(Color.white)
                                     .cornerRadius(3)
                                     // Hit Return button on keyboard
                                     .onSubmit {
-                                        viewModel.budget = tempBudget
-                                        tempBudget = ""
+                                        isBudgetTextFieldFocus = false
                                     }
                                 
                                 Spacer()
@@ -66,9 +71,15 @@ struct DetailedScreenOfExpenses: View {
                             
                             // Set Budget button
                             Button {
+                                // resign textfield keyboard
+                                isBudgetTextFieldFocus = false
+                                
                                 // if budget is valid meaning that budget is > 0
-                                if Double(viewModel.budget) ?? 0.0 > 0 {
-                                    self.isBudgetTextShown = true
+                                if viewModel.budget ?? 0.0 > 0.0 {
+                                    // Change budget in DB
+                                    DataManager.shared.changeBudgetInFolder(userID: userID, folderID: folderID, budgetValue: viewModel.budget ?? 0.0) {
+                                        self.isBudgetTextShown = true
+                                    }
                                 }
                             } label: {
                                 Text("Set Budget")
@@ -80,28 +91,29 @@ struct DetailedScreenOfExpenses: View {
                             .cornerRadius(5)
                             
                             // Budget Text
-                            if isBudgetTextShown {
+                            if isBudgetTextShown || viewModel.budget ?? 0.0 > 0.0 {
                                 // Show budget
-                                Text("Your budget: $\(Double(viewModel.budget) ?? 0.0, specifier: "%.2f")")
+                                Text("Your budget: $\((viewModel.budget) ?? 0.0, specifier: "%.2f")")
                                     .font(.title3)
                                     .fontWeight(.medium)
+                                    .foregroundColor(.red)
                             }
                         }
                     }
                     
                     // Total spending
-                    Text("Total Spending: $\(Double(viewModel.totalSpending), specifier: "%.2f")")
+                    Text("Total Spending: $\(viewModel.totalSpending, specifier: "%.2f")")
                         .font(.title3)
                         .fontWeight(.medium)
                 }
             } footer: {
-                if expenseArray.count > 0 {
+                if viewModel.expenseArray.count > 0 {
                     HStack {
                         Spacer()
                         
                         // Click on button to go to ChartView
                         // Using NavigationLink
-                        NavigationLink(destination: ChartView(expenseArray: self.expenseArray)) {
+                        NavigationLink(destination: ChartView(expenseArray: self.viewModel.expenseArray)) {
                             Text("See Charts")
                                 .font(.title3)
                                 .fontWeight(.semibold)
@@ -118,15 +130,18 @@ struct DetailedScreenOfExpenses: View {
         }
         .onAppear{
             // Mới vô thì lấy array từ DB.
-            // calculate total spending
-            // lấy isBudgetSet từ DB để display Switch.
-            DataManager.shared.readDataFromOneFolder(userID: userID, folderID: folderID, folderName: folderName) { array, isBudgetSet in
+            // Calculate total spending.
+            // Lấy isBudgetSet từ DB để display Switch.
+            // Lấy budget từ DB
+            DataManager.shared.readDataFromOneFolder(userID: userID, folderID: folderID, folderName: folderName) { array, isBudgetSet, budget in
                 DispatchQueue.main.async {
-                    expenseArray = array
+                    viewModel.expenseArray = array
                     // Caculate total spending after we get the array when getting to this screen.
                     viewModel.totalSpending = SpendingDataController.shared.calculateTotalSpending(arrayOfSepnding: array)
-                    // Value of isBudgetSet
+                    // Value of isBudgetSet from DB
                     self.viewModel.isSetBudget = isBudgetSet
+                    // get the value of budget
+                    self.viewModel.budget = budget
                 }
             }
         }
@@ -141,15 +156,15 @@ struct DetailedScreenOfExpenses: View {
         }
         .sheet(isPresented: $isAddButtonTapped) {
             AddNewExpense(isAddButtonTapped: $isAddButtonTapped,
-                          expenseArray: $expenseArray,
+                          expenseArray: $viewModel.expenseArray,
                           folderName: self.folderName,
                           userID: self.userID,
                           folderID: self.folderID,
                           totalSpending: $viewModel.totalSpending)
         }
-//        .alert("Add Budget", isPresented: $viewModel.isSetBudget) {
-//            TextField("Please enter your budget", text: $viewModel.budget)
-//        }
+        .alert("Add Budget", isPresented: $viewModel.isSetBudget) {
+            TextField("Please enter your budget", text: $viewModel.budget)
+        }
     }
 }
 

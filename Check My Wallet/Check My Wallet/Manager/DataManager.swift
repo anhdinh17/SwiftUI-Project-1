@@ -168,8 +168,10 @@ class DataManager {
                 // If there's nothing under "folders" (first time creating)
                 let addedFolder = [
                     expenseFolder.id : [expenseFolder.name : "",
-                                        "isBudgetSet" : false]
-                    // Dưới mỗi folder ID sẽ có folder name và var isBudgetSet cho folder name đó
+                                        "isBudgetSet" : false,
+                                        "budget" : 0.0
+                                       ]
+                    // Dưới mỗi folder ID sẽ có folder name, isBudgetSet va budget cho folder name đó
                 ]
                 self?.databaseRef.child("Users").child(userID).child("folders").setValue(addedFolder) { error, _ in
                     if error != nil {
@@ -190,7 +192,8 @@ class DataManager {
             // Thi add them key-value
             dictionary[expenseFolder.id] = [
                 expenseFolder.name : "",
-                "isBudgetSet" : false
+                "isBudgetSet" : false,
+                "budget" : 0.0
             ]
             self?.databaseRef.child("Users").child(userID).child("folders").setValue(dictionary) { error, _ in
                 if error != nil {
@@ -235,7 +238,7 @@ class DataManager {
                  - subDict.keys trả về 1 array của tất cả key
                  - phải filter array này để chỉ lấy folder name
                  */
-                let folderNameArray = subDict.keys.filter({$0 != "isBudgetSet"})
+                let folderNameArray = subDict.keys.filter({$0 != "isBudgetSet" && $0 != "budget"})
                 let folderName = folderNameArray.first
                 let folder = FoldersModel(folderName: folderName, folderIDFromDB: folderID)
                 expenseFolderArray.append(folder)
@@ -304,11 +307,12 @@ class DataManager {
     
     // Read all products from 1 folder
     // Bool trả về là bool của isBudgetSet
-    func readDataFromOneFolder(userID: String, folderID: String, folderName: String, completion: @escaping ([ExpenseModel],Bool)->Void) {
+    func readDataFromOneFolder(userID: String, folderID: String, folderName: String, completion: @escaping ([ExpenseModel],Bool,Double)->Void) {
         var expenseArray: [ExpenseModel] = []
         
-        // Read the isBudgetSet first
+        // Read the isBudgetSet, budget first
         var isBudgetSet: Bool = false
+        var budget: Double = 0.0
         databaseRef.child("Users").child(userID).child("folders").child(folderID).observeSingleEvent(of: .value, with: { [weak self] snapshot  in
             // What under folder's ID
             guard let dictionary = snapshot.value as? [String:Any] else {
@@ -317,7 +321,13 @@ class DataManager {
             guard let boolValue = dictionary["isBudgetSet"] as? Int else {
                 return
             }
+            // Bool from DB sẽ có value là 1 or 0
             isBudgetSet = boolValue == 1 ? true : false
+            
+            guard let budgetValue = dictionary["budget"] as? Double else {
+                return
+            }
+            budget = budgetValue
             
             /**
              - Để thằng này trong đây vì ta muốn lấy isBudgetSet first, sau đó mới run thằng này.
@@ -325,7 +335,7 @@ class DataManager {
              */
             self?.databaseRef.child("Users").child(userID).child("folders").child(folderID).child(folderName).observeSingleEvent(of: .value, with: { [weak self] snapshot in
                 guard let dictionary = snapshot.value as? [String:Any] else {
-                    completion([],isBudgetSet)
+                    completion([],isBudgetSet,budget)
                     return
                 }
                 
@@ -347,7 +357,7 @@ class DataManager {
                                                dateSpendOn: dictUnderProduct["Date"] as! TimeInterval)
                     expenseArray.append(expense)
                 }
-                completion(expenseArray,isBudgetSet)
+                completion(expenseArray,isBudgetSet,budget)
             })
         })
     }
@@ -357,6 +367,17 @@ class DataManager {
         databaseRef.child("Users").child(userID).child("folders").child(folderID).child("isBudgetSet").setValue(valueOfSwitch) { [weak self] error, _ in
             if error == nil {
                 completion(valueOfSwitch)
+            } else {
+                print("ERROR: \(error?.localizedDescription)")
+            }
+        }
+    }
+    
+    // Change budet in each folder
+    func changeBudgetInFolder(userID: String, folderID: String, budgetValue: Double, completion: @escaping(() -> Void)) {
+        databaseRef.child("Users").child(userID).child("folders").child(folderID).child("budget").setValue(budgetValue) { [weak self] error, _ in
+            if error == nil {
+                completion()
             } else {
                 print("ERROR: \(error?.localizedDescription)")
             }
