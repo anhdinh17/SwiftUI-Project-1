@@ -22,6 +22,8 @@ struct AddNewExpense: View {
     @Binding var totalSpending: Double
     // Binding this Bool to check if total spending is over budget so that we can show alert in DetailedScreen
     @Binding var isTotalSpendingOverBudget: Bool
+    // Take in current budget of folder from DetailedScreen
+    var folderBudget: Double
     
     var body: some View {
         VStack {
@@ -62,6 +64,11 @@ struct AddNewExpense: View {
                             // Calculate new total spending after hitting Add so that we can have new total spending for DetailedScreen
                             self.totalSpending = SpendingDataController.shared.calculateTotalSpending(arrayOfSepnding: array)
                             
+                            // Check if total spending is more than budget
+                            if self.totalSpending > self.folderBudget {
+                                isTotalSpendingOverBudget = true
+                            }
+                            
                             // Close pop-up sheet
                             self.isAddButtonTapped = false
                         } else {
@@ -89,6 +96,8 @@ struct AddNewExpense_Previews: PreviewProvider {
                       folderName: "abc",
                       userID: "",
                       folderID: "",
-                      totalSpending: .constant(0.0))
+                      totalSpending: .constant(0.0),
+                      isTotalSpendingOverBudget: .constant(false),
+                      folderBudget: 0.0)
     }
 }

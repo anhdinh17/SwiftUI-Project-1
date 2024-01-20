@@ -207,7 +207,8 @@ class DataManager {
                         guard let subDict = value as? [String:Any] else {
                             return
                         }
-                        let folderName = subDict.keys.first
+                        let folderNameArray = subDict.keys.filter({$0 != "isBudgetSet" && $0 != "budget"})
+                        let folderName = folderNameArray.first
                         let folder = FoldersModel(folderName: folderName, folderIDFromDB: folderID)
                         tempArray.append(folder)
                     }
