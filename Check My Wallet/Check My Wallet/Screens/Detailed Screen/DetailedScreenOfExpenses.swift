@@ -41,6 +41,7 @@ struct DetailedScreenOfExpenses: View {
                         // switch on/off => viewModel.isSetBudget = True/False
                         Toggle(isOn: $viewModel.isSetBudget) {
                             Text("Do you want to set a budget?")
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                         .onChange(of: viewModel.isSetBudget) { newValue in
                             // newValue = false/true if switch is Off/On
