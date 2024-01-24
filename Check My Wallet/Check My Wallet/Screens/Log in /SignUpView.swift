@@ -16,8 +16,7 @@ struct SignUpView: View {
                        subtitle: "Start Organizing Your Expenses",
                        angle: -15,
                        background: .orange)
-            
-            Form {
+            VStack {
                 TextField("Full Name", text: $viewModel.name)
                     .textFieldStyle(DefaultTextFieldStyle())
                     .autocorrectionDisabled()
@@ -30,15 +29,24 @@ struct SignUpView: View {
                 SecureField("Password", text: $viewModel.password)
                     .textFieldStyle(DefaultTextFieldStyle())
                 
-                TLButton(title: "Register", background: .green, action: {
+                StandardButton(title: "Register", backgroundColor: .green, buttonAction: {
                     // Click on Register
                     viewModel.registerAccount()
                 })
-                    .padding()
             }
+            .padding()
+            // Cho offset để textField ko bị keyboard che
             .offset(y: -50)
-            
-            Spacer()
+
+        }
+        .alert("Oops", isPresented: $viewModel.isErrorAlert) {
+            Button {
+                
+            } label: {
+                Text("OK")
+            }
+        } message: {
+            Text(viewModel.errorMessage)
         }
     }
 }

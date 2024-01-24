@@ -13,6 +13,8 @@ class SignUpViewModel: ObservableObject {
     @Published var name: String = ""
     @Published var email: String = ""
     @Published var password: String = ""
+    @Published var isErrorAlert: Bool = false
+    @Published var errorMessage: String = ""
     
     // Sign up account to Firebase
     func registerAccount() {
@@ -35,6 +37,10 @@ class SignUpViewModel: ObservableObject {
                 UserDefaults.standard.set(self?.name, forKey: "userName")
                 UserDefaults.standard.set(userID, forKey: "userID")
             } else {
+                self?.isErrorAlert.toggle()
+                if let errorMess = error?.localizedDescription {
+                    self?.errorMessage = errorMess
+                }
                 print(error?.localizedDescription)
             }
 

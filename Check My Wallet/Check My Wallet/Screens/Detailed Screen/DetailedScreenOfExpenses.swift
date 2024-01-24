@@ -18,6 +18,8 @@ struct DetailedScreenOfExpenses: View {
     @State var isTotalSpendingOverBudget: Bool = false
     // Variable to trigger alert of over spending
     @State var isAlertShown: Bool = false
+    // Trigger alert after setting new budget
+    @State var isSetBudgetHit: Bool = false
     @FocusState var isBudgetTextFieldFocus: Bool
     var folderName: String
     var userID: String
@@ -82,6 +84,7 @@ struct DetailedScreenOfExpenses: View {
                                         // Change budget in DB
                                         DataManager.shared.changeBudgetInFolder(userID: userID, folderID: folderID, budgetValue: viewModel.budget ?? 0.0) {
                                             self.isBudgetTextShown = true
+                                            self.isSetBudgetHit.toggle()
                                         }
                                     }
                                     //isTotalSpendingOverBudget.toggle()
@@ -165,7 +168,7 @@ struct DetailedScreenOfExpenses: View {
              - The solution on SOV is to use onDimiss
              */
             
-            // When coming back to this screen, isTotalSpendingOverBudget has new value from AddNewExpense (because of the binding)
+            // When the sheet dimisses, isTotalSpendingOverBudget has new value from AddNewExpense (because of the binding)
             if self.isTotalSpendingOverBudget {
                 DispatchQueue.main.async {
                     isAlertShown = true
@@ -183,12 +186,23 @@ struct DetailedScreenOfExpenses: View {
         }
         .alert("Warning", isPresented: $isAlertShown) {
             Button{
-                print("OVERRRRRR")
+                
             } label: {
                 Text("Ok")
             }
         } message: {
             Text("You have exceeded your budget")
+        }
+        .alert("Good News", isPresented: $isSetBudgetHit) {
+            Button{
+               
+            } label: {
+                Text("Ok")
+            }
+        } message: {
+            if let budget = viewModel.budget {
+                Text("You have setup a budget of \(budget,specifier: "%.2f")")
+            }
         }
     }
 }
