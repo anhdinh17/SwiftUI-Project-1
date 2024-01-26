@@ -326,7 +326,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1FDCA8DD-6EF2-4546-8D36-3892CEF25DFB"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Check My Wallet/Screens/Log in /SignUpViewmodel.swift"
@@ -868,7 +868,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "25557B23-2DBF-4F9F-A567-F167B017DF46"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Check My Wallet/Screens/Log in /SignUpViewmodel.swift"
@@ -916,7 +916,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "52538ED1-46DD-4DF2-BE87-8F152DA269A4"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Check My Wallet/Screens/Log in /SignUpViewmodel.swift"

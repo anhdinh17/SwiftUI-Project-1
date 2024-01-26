@@ -384,5 +384,20 @@ class DataManager {
             }
         }
     }
+    
+    // get username and email
+    func getUsernameAndEmail(userID: String, completion: @escaping ((String?,String?) -> Void)) {
+        var username: String = ""
+        var email: String = ""
+        databaseRef.child("Users").child(userID).observeSingleEvent(of: .value, with: { [weak self] snapshot in
+            guard let dictionary = snapshot.value as? [String:Any] else {
+                completion(nil,nil)
+                return
+            }
+            username = dictionary["username"] as? String ?? ""
+            email = dictionary["email"] as? String ?? ""
+            completion(username, email)
+        })
+    }
 
 }
