@@ -400,4 +400,17 @@ class DataManager {
         })
     }
 
+    // delete a folder
+    func deleteFolder(userID: String, folderID: String, completion: @escaping (Bool) -> Void) {
+        // Delete data tính từ folderID và tất cả những gì dưới nó
+        databaseRef.child("Users").child(userID).child("folders").child(folderID).removeValue { [weak self] error, _ in
+            if error == nil {
+                completion(true)
+            } else {
+                completion(false)
+                print(error?.localizedDescription)
+            }
+        }
+    }
+    
 }

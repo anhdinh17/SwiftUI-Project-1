@@ -10,4 +10,7 @@ import SwiftUI
 
 class AddNewExpenseVM: ObservableObject {
     @Published var totalSpending: Double = 0.0
+    @Published var nameOfExpense: String = ""
+    @Published var amountSpent: String = ""
+    @Published var dateSpendMoney: Date = Date()
 }

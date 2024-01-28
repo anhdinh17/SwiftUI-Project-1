@@ -11,17 +11,21 @@ import FirebaseAuth
 struct ExpenseHomeView: View {
     
     @State var isAddButtonTapped: Bool = false
-    @State var folderArray: [FoldersModel] = []
     @State var showAddFolderAlert: Bool = false
     @StateObject var viewModel = ExpenseHomeViewViewModel()
+    @State var isDeleteFolderGoWrongAlert: Bool = false
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(folderArray) { eachFolder in
+                ForEach(viewModel.folderArray) { eachFolder in
                     NavigationLink(value: eachFolder) {
                         Text(eachFolder.folderName ?? "")
                     }
+                }
+                .onDelete { indexSet in
+                    // Delete a folder in folderArray
+                    deleteFolder(at: indexSet)
                 }
             }
             .navigationTitle("Home")
@@ -43,7 +47,7 @@ struct ExpenseHomeView: View {
         .onAppear{
             // Fetch data from Realtime DB respect to current user
             DataManager.shared.readDataBasedOnUserID(userID: viewModel.userID, completion: { array in
-                self.folderArray = array
+                self.viewModel.folderArray = array
             })
         }
         .alert("Add Your Expense Object", isPresented: $showAddFolderAlert, actions: {
@@ -56,7 +60,7 @@ struct ExpenseHomeView: View {
                     // save to database
                     DataManager.shared.createExpenseFolderWithUserID(userID: viewModel.userID, expenseFolder: folder, completion: { result,array in
                         if result {
-                            self.folderArray = array
+                            self.viewModel.folderArray = array
                         } else {
                             print("UNABLE TO SAVE TO DATA")
                         }
@@ -72,6 +76,32 @@ struct ExpenseHomeView: View {
         }, message : {
             Text("Enter name of your subject")
         })
+        .alert("Oops", isPresented: $isDeleteFolderGoWrongAlert) {
+            Button {
+                
+            } label: {
+                Text("OK")
+            }
+        } message: {
+            Text("We are not able to delete your item at this time.\n Please try again later.")
+        }
+    }
+    
+    func deleteFolder(at offsets: IndexSet) {
+        var folderID = ""
+        // i is index of item to be deleted
+        for i in offsets.makeIterator() {
+            let objectToBeDelelted = viewModel.folderArray[i]
+            folderID = objectToBeDelelted.folderIDFromDB ?? ""
+        }
+        DataManager.shared.deleteFolder(userID: viewModel.userID, folderID: folderID) { success in
+            if success {
+                // Remove deleted item from folderArray
+                self.viewModel.folderArray.remove(atOffsets: offsets)
+            } else {
+                isDeleteFolderGoWrongAlert.toggle()
+            }
+        }
     }
 }
 

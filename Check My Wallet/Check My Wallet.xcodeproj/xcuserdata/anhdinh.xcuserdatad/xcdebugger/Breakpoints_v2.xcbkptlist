@@ -110,8 +110,8 @@
             filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -238,8 +238,8 @@
             filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -698,58 +698,10 @@
             filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "body"
             landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "172E7DB9-1E80-4879-B3AE-E46EED404E92"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Check My Wallet/Screens/Add new Expense/AddNewExpense.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "172E7DB9-1E80-4879-B3AE-E46EED404E92 - 6df367f160bd751"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool, Swift.Array&lt;Check_My_Wallet.ExpenseModel&gt;) -&gt; () in closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.textFieldStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.TextFieldStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.keyboardType(__C.UIKeyboardType) -&gt; some&gt;&gt;.0, SwiftUI.DatePicker&lt;SwiftUI.Text&gt;, SwiftUI.Button&lt;SwiftUI.Text&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.Form&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.textFieldStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.TextFieldStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.keyboardType(__C.UIKeyboardType) -&gt; some&gt;&gt;.0, SwiftUI.DatePicker&lt;SwiftUI.Text&gt;, SwiftUI.Button&lt;SwiftUI.Text&gt;)&gt;&gt;)&gt; in Check_My_Wallet.AddNewExpense.body.getter : some"
-                  moduleName = "Check My Wallet"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Screens/Add%20new%20Expense/AddNewExpense.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "288">
-               </Location>
-               <Location
-                  uuid = "172E7DB9-1E80-4879-B3AE-E46EED404E92 - 6df367f160bd751"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool, Swift.Array&lt;Check_My_Wallet.ExpenseModel&gt;) -&gt; () in closure #1 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.textFieldStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.TextFieldStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.keyboardType(__C.UIKeyboardType) -&gt; some&gt;&gt;.0, SwiftUI.DatePicker&lt;SwiftUI.Text&gt;, SwiftUI.Button&lt;SwiftUI.Text&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, SwiftUI.Form&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.textFieldStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.TextFieldStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.keyboardType(__C.UIKeyboardType) -&gt; some&gt;&gt;.0, SwiftUI.DatePicker&lt;SwiftUI.Text&gt;, SwiftUI.Button&lt;SwiftUI.Text&gt;)&gt;&gt;)&gt; in Check_My_Wallet.AddNewExpense.body.getter : some"
-                  moduleName = "Check My Wallet"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Screens/Add%20new%20Expense/AddNewExpense.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "259">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -762,8 +714,8 @@
             filePath = "Check My Wallet/Screens/Add new Expense/AddNewExpense.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -958,6 +910,54 @@
                   offsetFromSymbolStart = "1571">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2A9B0480-77F6-474A-8F54-9D00F5A4DE6B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Check My Wallet/Manager/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "406"
+            endingLineNumber = "406"
+            landmarkName = "deleteFolder(userID:folderID:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6BDAE9A3-D751-4E42-AC2E-E0FE33A5E3E0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "deleteFolder(at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3A868A25-C01D-416D-BFA3-D087D111153B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Check My Wallet/Screens/Add new Expense/AddNewExpense.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

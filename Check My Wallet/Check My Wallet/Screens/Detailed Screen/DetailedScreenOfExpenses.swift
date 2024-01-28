@@ -180,9 +180,11 @@ struct DetailedScreenOfExpenses: View {
                           folderName: self.folderName,
                           userID: self.userID,
                           folderID: self.folderID,
+                          isBudgetSet: self.viewModel.isSetBudget,
                           totalSpending: $viewModel.totalSpending,
                           isTotalSpendingOverBudget: $isTotalSpendingOverBudget,
-                          folderBudget: self.viewModel.budget ?? 0.0)
+                          folderBudget: self.viewModel.budget ?? 0.0
+            )
         }
         .alert("Warning", isPresented: $isAlertShown) {
             Button{

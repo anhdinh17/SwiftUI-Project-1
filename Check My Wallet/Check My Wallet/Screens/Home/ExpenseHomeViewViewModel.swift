@@ -11,6 +11,7 @@ import FirebaseAuth
 class ExpenseHomeViewViewModel: ObservableObject {
     @Published var userID: String
     @Published var folderName: String = ""
+    @Published var folderArray: [FoldersModel] = []
     
     init() {
         // Check if user is signed in

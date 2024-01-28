@@ -11,12 +11,10 @@ struct AddNewExpense: View {
     @StateObject var viewModel = AddNewExpenseVM()
     @Binding var isAddButtonTapped: Bool
     @Binding var expenseArray: [ExpenseModel]
-    @State var nameOfExpense: String = ""
-    @State var amountSpent: String = ""
-    @State var dateSpendMoney: Date = Date()
     var folderName: String
     var userID: String
     var folderID: String
+    var isBudgetSet: Bool
     @State var isAlertOn: Bool = false
     // Binding total spending to use for viewModel.totalSpending in DetailedScreen
     @Binding var totalSpending: Double
@@ -33,24 +31,24 @@ struct AddNewExpense: View {
                 .padding(.top, 50)
             
             Form {
-                TextField("What you spend on", text: $nameOfExpense)
+                TextField("What you spend on", text: $viewModel.nameOfExpense)
                     .textFieldStyle(DefaultTextFieldStyle())
                 
-                TextField("Amount", text: $amountSpent)
+                TextField("Amount", text: $viewModel.amountSpent)
                     .textFieldStyle(PlainTextFieldStyle())
                     .keyboardType(.numberPad)
                 
                 // "selection" la 1 Date type
                 DatePicker("Date you spend on",
-                           selection: $dateSpendMoney,
+                           selection: $viewModel.dateSpendMoney,
                            displayedComponents: .date
                 )
                 
                 Button{
                     // Chuyen Date thanh TimeInterval
-                    let expenseModel = ExpenseModel(nameOfExpense: nameOfExpense,
-                                                    amoutExpense: Double(amountSpent) ?? 0.00,
-                                                    dateSpendOn: dateSpendMoney.timeIntervalSince1970)
+                    let expenseModel = ExpenseModel(nameOfExpense: viewModel.nameOfExpense,
+                                                    amoutExpense: Double(viewModel.amountSpent) ?? 0.00,
+                                                    dateSpendOn: viewModel.dateSpendMoney.timeIntervalSince1970)
                     
                     // Add to DB
                     DataManager.shared.addDetailsToEachFolderBasedOnUserID(userID: self.userID,
@@ -65,7 +63,7 @@ struct AddNewExpense: View {
                             self.totalSpending = SpendingDataController.shared.calculateTotalSpending(arrayOfSepnding: array)
                             
                             // Check if total spending is more than budget
-                            if self.totalSpending > self.folderBudget {
+                            if self.totalSpending > self.folderBudget && self.isBudgetSet == true {
                                 isTotalSpendingOverBudget = true
                             }
                             
@@ -89,15 +87,18 @@ struct AddNewExpense: View {
     }
 }
 
-struct AddNewExpense_Previews: PreviewProvider {
-    static var previews: some View {
-        AddNewExpense(isAddButtonTapped: .constant(false),
-                      expenseArray: .constant([ExpenseModel(nameOfExpense: "Coffee", amoutExpense: 5.00, dateSpendOn: Date().timeIntervalSince1970)]),
-                      folderName: "abc",
-                      userID: "",
-                      folderID: "",
-                      totalSpending: .constant(0.0),
-                      isTotalSpendingOverBudget: .constant(false),
-                      folderBudget: 0.0)
-    }
-}
+//MARK: - This stupid Preview
+//struct AddNewExpense_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddNewExpense(isAddButtonTapped: .constant(false),
+//                      expenseArray: .constant([ExpenseModel(nameOfExpense: "Coffee", amoutExpense: 5.00, dateSpendOn: Date().timeIntervalSince1970)]),
+//                      folderName: "abc",
+//                      userID: "",
+//                      folderID: "",
+//                      isBudgetSet: .constant(false),
+//                      totalSpending: .constant(0.0),
+//                      isTotalSpendingOverBudget: .constant(false),
+//                      folderBudget: 0.0
+//                      )
+//    }
+//}
