@@ -248,8 +248,10 @@ class DataManager {
         })
     }
     
-    func addDetailsToEachFolderBasedOnUserID(userID: String,folderID: String, folderName: String, expenseModel: ExpenseModel, completion: @escaping ((Bool,[ExpenseModel]) -> Void)) {
-        var expenseArray: [ExpenseModel] = []
+    // Use ExpenseModel to send data to DB
+    // Use ExpenseModelToFetchList to receive array because we want to have the id that is fixed to delete item.
+    func addDetailsToEachFolderBasedOnUserID(userID: String,folderID: String, folderName: String, expenseModel: ExpenseModel, completion: @escaping ((Bool,[ExpenseModelToFetchList]) -> Void)) {
+        var expenseArray: [ExpenseModelToFetchList] = []
         databaseRef.child("Users").child(userID).child("folders").child(folderID).child(folderName).observeSingleEvent(of: .value, with: { [weak self] snapshot in
             // What under folder name
             guard var dictionary = snapshot.value as? [String:Any] else {
@@ -266,7 +268,11 @@ class DataManager {
                         completion(false,[])
                         return
                     }
-                    expenseArray.append(expenseModel)
+                    let objectToReturn = ExpenseModelToFetchList(id: expenseModel.id,
+                                                                 nameOfExpense: expenseModel.nameOfExpense,
+                                                                 amoutExpense: expenseModel.amoutExpense,
+                                                                 dateSpendOn: expenseModel.dateSpendOn)
+                    expenseArray.append(objectToReturn)
                     completion(true,expenseArray)
                     // First time add item, return array of 1 element and stop
                 }
@@ -291,11 +297,10 @@ class DataManager {
                             return
                         }
                         
-                        // Khi minh tao instance cua ExpenseModel de tra ve, luc nay
-                        // minh ko can quan tam var id cua ExpenseModel, no se duoc dung cho List cua screen.
-                        let expense = ExpenseModel(nameOfExpense: productName,
-                                                   amoutExpense: dictUnderProduct["Amount"] as! Double,
-                                                   dateSpendOn: dictUnderProduct["Date"] as! TimeInterval)
+                        let expense = ExpenseModelToFetchList(id: whatYouBoughtID,
+                                                              nameOfExpense: productName,
+                                                              amoutExpense: dictUnderProduct["Amount"] as! Double,
+                                                              dateSpendOn: dictUnderProduct["Date"] as! TimeInterval)
                         expenseArray.append(expense)
                     }
                     completion(true,expenseArray)
@@ -308,8 +313,8 @@ class DataManager {
     
     // Read all products from 1 folder
     // Bool trả về là bool của isBudgetSet
-    func readDataFromOneFolder(userID: String, folderID: String, folderName: String, completion: @escaping ([ExpenseModel],Bool,Double)->Void) {
-        var expenseArray: [ExpenseModel] = []
+    func readDataFromOneFolder(userID: String, folderID: String, folderName: String, completion: @escaping ([ExpenseModelToFetchList],Bool,Double)->Void) {
+        var expenseArray: [ExpenseModelToFetchList] = []
         
         // Read the isBudgetSet, budget first
         var isBudgetSet: Bool = false
@@ -350,10 +355,8 @@ class DataManager {
                     guard let dictUnderProduct = dictUnderProductID[productName] as? [String:Any] else {
                         return
                     }
-                    
-                    // Khi minh tao instance cua ExpenseModel de tra ve, luc nay
-                    // minh ko can quan tam var id cua ExpenseModel, no se duoc dung cho List cua screen.
-                    let expense = ExpenseModel(nameOfExpense: productName,
+                    let expense = ExpenseModelToFetchList(id: whatYouBoughtID,
+                                               nameOfExpense: productName,
                                                amoutExpense: dictUnderProduct["Amount"] as! Double,
                                                dateSpendOn: dictUnderProduct["Date"] as! TimeInterval)
                     expenseArray.append(expense)
@@ -400,7 +403,11 @@ class DataManager {
         })
     }
 
-    // delete a folder
+    /// delete a folder
+    /// - Parameters:
+    ///   - userID: user's ID
+    ///   - folderID: folder's ID
+    ///   - completion: Return a Bool value to indicate if the removal is through. At first, I want to have an array returned in the completion, but then I see that when we get to Home screen, we always have an array returned in .onAppear from DB.
     func deleteFolder(userID: String, folderID: String, completion: @escaping (Bool) -> Void) {
         // Delete data tính từ folderID và tất cả những gì dưới nó
         databaseRef.child("Users").child(userID).child("folders").child(folderID).removeValue { [weak self] error, _ in
@@ -409,6 +416,17 @@ class DataManager {
             } else {
                 completion(false)
                 print(error?.localizedDescription)
+            }
+        }
+    }
+    
+    // TODO: A func to delete a spending
+    func deleteSpending(userID: String, folderID: String, folderName: String, spendingID: String, completion: @escaping (Bool) -> Void) {
+        databaseRef.child("Users").child(userID).child("folders").child(folderID).child(folderName).child(spendingID).removeValue { [weak self] error, _ in
+            if error == nil {
+                completion(true)
+            } else {
+                completion(false)
             }
         }
     }

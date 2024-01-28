@@ -10,7 +10,7 @@ import SwiftUI
 struct AddNewExpense: View {
     @StateObject var viewModel = AddNewExpenseVM()
     @Binding var isAddButtonTapped: Bool
-    @Binding var expenseArray: [ExpenseModel]
+    @Binding var expenseArray: [ExpenseModelToFetchList]
     var folderName: String
     var userID: String
     var folderID: String

@@ -10,7 +10,7 @@ import Charts
 
 struct ChartView: View {
     
-    let expenseArray: [ExpenseModel]
+    let expenseArray: [ExpenseModelToFetchList]
     
     var body: some View {
         
@@ -46,6 +46,6 @@ struct ChartView: View {
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartView(expenseArray: [.init(nameOfExpense: "Shoues", amoutExpense: 15.77, dateSpendOn: 12345677899)])
+        ChartView(expenseArray: [.init(id: "1234", nameOfExpense: "Shoues", amoutExpense: 15.77, dateSpendOn: 12345677899)])
     }
 }

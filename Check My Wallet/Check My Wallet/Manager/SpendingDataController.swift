@@ -16,7 +16,7 @@ class SpendingDataController {
     }
     
     // Calculate total spending
-    func calculateTotalSpending(arrayOfSepnding: [ExpenseModel]) -> Double {
+    func calculateTotalSpending(arrayOfSepnding: [ExpenseModelToFetchList]) -> Double {
         var totalSpending: Double = 0.0
         arrayOfSepnding.forEach { eachSpending in
             totalSpending += eachSpending.amoutExpense

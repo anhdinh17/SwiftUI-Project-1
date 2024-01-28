@@ -12,7 +12,7 @@ class DetailedScreenOfExpensesVM: ObservableObject {
     @Published var isSetBudget: Bool = false
     @Published var budget: Double?
     @Published var totalSpending: Double = 0
-    @Published var expenseArray: [ExpenseModel] = []
+    @Published var expenseArray: [ExpenseModelToFetchList] = []
     
     func checkBudget() {
         if isSetBudget {

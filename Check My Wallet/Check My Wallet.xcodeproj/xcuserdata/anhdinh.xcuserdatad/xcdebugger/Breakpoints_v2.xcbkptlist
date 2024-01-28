@@ -126,8 +126,8 @@
             filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -238,8 +238,8 @@
             filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -316,8 +316,8 @@
             filePath = "Check My Wallet/Manager/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
             landmarkName = "addDetailsToEachFolderBasedOnUserID(userID:folderID:folderName:expenseModel:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -523,8 +523,8 @@
             filePath = "Check My Wallet/Screens/Detailed Screen/DetailedScreenOfExpenses.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -539,8 +539,8 @@
             filePath = "Check My Wallet/Manager/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "readDataFromOneFolder(userID:folderID:folderName:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -555,8 +555,8 @@
             filePath = "Check My Wallet/Manager/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
             landmarkName = "readDataFromOneFolder(userID:folderID:folderName:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -571,8 +571,8 @@
             filePath = "Check My Wallet/Manager/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "361"
-            endingLineNumber = "361"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
             landmarkName = "readDataFromOneFolder(userID:folderID:folderName:completion:)"
             landmarkType = "7">
             <Locations>
@@ -635,8 +635,8 @@
             filePath = "Check My Wallet/Manager/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "379"
-            endingLineNumber = "379"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
             landmarkName = "changeBudgetInFolder(userID:folderID:budgetValue:completion:)"
             landmarkType = "7">
             <Locations>
@@ -698,8 +698,8 @@
             filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -730,42 +730,10 @@
             filePath = "Check My Wallet/Screens/Detailed Screen/DetailedScreenOfExpenses.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "body"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "EFE9EDC0-EA2B-4016-B460-F6D5757F8D09 - fde751baa381e3be"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in Check_My_Wallet.DetailedScreenOfExpenses.body.getter : some"
-                  moduleName = "Check My Wallet"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Screens/Detailed%20Screen/DetailedScreenOfExpenses.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "139"
-                  endingLineNumber = "139"
-                  offsetFromSymbolStart = "30">
-               </Location>
-               <Location
-                  uuid = "EFE9EDC0-EA2B-4016-B460-F6D5757F8D09 - d74be7f247371ed"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Array&lt;Check_My_Wallet.ExpenseModel&gt;, Swift.Bool, Swift.Double) -&gt; () in closure #2 () -&gt; () in Check_My_Wallet.DetailedScreenOfExpenses.body.getter : some"
-                  moduleName = "Check My Wallet"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Screens/Detailed%20Screen/DetailedScreenOfExpenses.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "140"
-                  endingLineNumber = "140"
-                  offsetFromSymbolStart = "245">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -778,8 +746,8 @@
             filePath = "Check My Wallet/Screens/Detailed Screen/DetailedScreenOfExpenses.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -922,8 +890,8 @@
             filePath = "Check My Wallet/Manager/DataManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "406"
-            endingLineNumber = "406"
+            startingLineNumber = "413"
+            endingLineNumber = "413"
             landmarkName = "deleteFolder(userID:folderID:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -938,8 +906,8 @@
             filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "deleteFolder(at:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -958,6 +926,352 @@
             endingLineNumber = "66"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "990E43EC-1311-43D5-A350-E96565FBD26E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "990E43EC-1311-43D5-A350-E96565FBD26E - 52f4057c19553c18"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in Check_My_Wallet.ExpenseHomeView.body.getter : some"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Screens/Home/ExpenseHomeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "29">
+               </Location>
+               <Location
+                  uuid = "990E43EC-1311-43D5-A350-E96565FBD26E - 79898953e4a777be"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;Check_My_Wallet.FoldersModel&gt;) -&gt; () in closure #2 () -&gt; () in Check_My_Wallet.ExpenseHomeView.body.getter : some"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Screens/Home/ExpenseHomeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "41">
+               </Location>
+               <Location
+                  uuid = "990E43EC-1311-43D5-A350-E96565FBD26E - 79898953e4a777be"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;Check_My_Wallet.FoldersModel&gt;) -&gt; () in closure #2 () -&gt; () in Check_My_Wallet.ExpenseHomeView.body.getter : some"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Screens/Home/ExpenseHomeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "54">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5327B4C-E759-410E-A1EC-896D9301B3A7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "B5327B4C-E759-410E-A1EC-896D9301B3A7 - 79898953e4a777be"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;Check_My_Wallet.FoldersModel&gt;) -&gt; () in closure #2 () -&gt; () in Check_My_Wallet.ExpenseHomeView.body.getter : some"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Screens/Home/ExpenseHomeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "41">
+               </Location>
+               <Location
+                  uuid = "B5327B4C-E759-410E-A1EC-896D9301B3A7 - 79898953e4a777be"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;Check_My_Wallet.FoldersModel&gt;) -&gt; () in closure #2 () -&gt; () in Check_My_Wallet.ExpenseHomeView.body.getter : some"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Screens/Home/ExpenseHomeView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "54">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "670D1BC3-D5E7-40CA-9A1D-5CCD957DFD8B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = ""
+            moduleName = "">
+            <Locations>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3280D661-9B5C-4561-A19D-8B1E338C5E17"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Check My Wallet/Manager/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "425"
+            endingLineNumber = "425"
+            landmarkName = "deleteSpending(userID:folderID:folderName:spendingID:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3280D661-9B5C-4561-A19D-8B1E338C5E17 - 9144b4403279e5b2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Check_My_Wallet.DataManager.deleteSpending(userID: Swift.String, folderID: Swift.String, folderName: Swift.String, spendingID: Swift.String, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Manager/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "422"
+                  endingLineNumber = "422"
+                  offsetFromSymbolStart = "196">
+               </Location>
+               <Location
+                  uuid = "3280D661-9B5C-4561-A19D-8B1E338C5E17 - 9f070d9fd1e2988"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;, __C.FIRDatabaseReference) -&gt; () in Check_My_Wallet.DataManager.deleteSpending(userID: Swift.String, folderID: Swift.String, folderName: Swift.String, spendingID: Swift.String, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Manager/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "423"
+                  endingLineNumber = "423"
+                  offsetFromSymbolStart = "106">
+               </Location>
+               <Location
+                  uuid = "3280D661-9B5C-4561-A19D-8B1E338C5E17 - 9144b4403279e593"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Check_My_Wallet.DataManager.deleteSpending(userID: Swift.String, folderID: Swift.String, folderName: Swift.String, spendingID: Swift.String, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Manager/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "423"
+                  endingLineNumber = "423"
+                  offsetFromSymbolStart = "196">
+               </Location>
+               <Location
+                  uuid = "3280D661-9B5C-4561-A19D-8B1E338C5E17 - 9f070d9fd1e296b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;, __C.FIRDatabaseReference) -&gt; () in Check_My_Wallet.DataManager.deleteSpending(userID: Swift.String, folderID: Swift.String, folderName: Swift.String, spendingID: Swift.String, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Manager/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "424"
+                  endingLineNumber = "424"
+                  offsetFromSymbolStart = "106">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "926002CB-6DB4-42A9-8334-1769ED18157E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Check My Wallet/Manager/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "426"
+            endingLineNumber = "426"
+            landmarkName = "deleteSpending(userID:folderID:folderName:spendingID:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "926002CB-6DB4-42A9-8334-1769ED18157E - 9f070d9fd1e2988"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;, __C.FIRDatabaseReference) -&gt; () in Check_My_Wallet.DataManager.deleteSpending(userID: Swift.String, folderID: Swift.String, folderName: Swift.String, spendingID: Swift.String, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Manager/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "423"
+                  endingLineNumber = "423"
+                  offsetFromSymbolStart = "106">
+               </Location>
+               <Location
+                  uuid = "926002CB-6DB4-42A9-8334-1769ED18157E - 9f070d9fd1e296b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;, __C.FIRDatabaseReference) -&gt; () in Check_My_Wallet.DataManager.deleteSpending(userID: Swift.String, folderID: Swift.String, folderName: Swift.String, spendingID: Swift.String, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Manager/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "424"
+                  endingLineNumber = "424"
+                  offsetFromSymbolStart = "106">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E31C3D96-04E2-4B2F-B2E6-2B3B045F4B6F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Check My Wallet/Manager/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "428"
+            endingLineNumber = "428"
+            landmarkName = "deleteSpending(userID:folderID:folderName:spendingID:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E31C3D96-04E2-4B2F-B2E6-2B3B045F4B6F - 9f070d9fd1e294a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;, __C.FIRDatabaseReference) -&gt; () in Check_My_Wallet.DataManager.deleteSpending(userID: Swift.String, folderID: Swift.String, folderName: Swift.String, spendingID: Swift.String, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Manager/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "425"
+                  endingLineNumber = "425"
+                  offsetFromSymbolStart = "187">
+               </Location>
+               <Location
+                  uuid = "E31C3D96-04E2-4B2F-B2E6-2B3B045F4B6F - 9f070d9fd1e2935"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;, __C.FIRDatabaseReference) -&gt; () in Check_My_Wallet.DataManager.deleteSpending(userID: Swift.String, folderID: Swift.String, folderName: Swift.String, spendingID: Swift.String, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Manager/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "426"
+                  endingLineNumber = "426"
+                  offsetFromSymbolStart = "187">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BDFCE944-90A7-4106-B4D0-CF002EA15DC4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Check My Wallet/Manager/DataManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "429"
+            endingLineNumber = "429"
+            landmarkName = "deleteSpending(userID:folderID:folderName:spendingID:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BDFCE944-90A7-4106-B4D0-CF002EA15DC4 - 9f070d9fd1e2935"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;, __C.FIRDatabaseReference) -&gt; () in Check_My_Wallet.DataManager.deleteSpending(userID: Swift.String, folderID: Swift.String, folderName: Swift.String, spendingID: Swift.String, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Manager/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "426"
+                  endingLineNumber = "426"
+                  offsetFromSymbolStart = "198">
+               </Location>
+               <Location
+                  uuid = "BDFCE944-90A7-4106-B4D0-CF002EA15DC4 - 9f070d9fd1e2914"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;, __C.FIRDatabaseReference) -&gt; () in Check_My_Wallet.DataManager.deleteSpending(userID: Swift.String, folderID: Swift.String, folderName: Swift.String, spendingID: Swift.String, completion: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Check My Wallet"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/anhdinh/Desktop/SwiftUI-Project-1/Check%20My%20Wallet/Check%20My%20Wallet/Manager/DataManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "427"
+                  endingLineNumber = "427"
+                  offsetFromSymbolStart = "198">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

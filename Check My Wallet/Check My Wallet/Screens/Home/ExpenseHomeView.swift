@@ -48,6 +48,7 @@ struct ExpenseHomeView: View {
             // Fetch data from Realtime DB respect to current user
             DataManager.shared.readDataBasedOnUserID(userID: viewModel.userID, completion: { array in
                 self.viewModel.folderArray = array
+                print("FOLDER ARRAY WHEN GETTING TO SCREEN: \(viewModel.folderArray)")
             })
         }
         .alert("Add Your Expense Object", isPresented: $showAddFolderAlert, actions: {
@@ -60,6 +61,7 @@ struct ExpenseHomeView: View {
                     // save to database
                     DataManager.shared.createExpenseFolderWithUserID(userID: viewModel.userID, expenseFolder: folder, completion: { result,array in
                         if result {
+                            // get new array of folders -> List will update table.
                             self.viewModel.folderArray = array
                         } else {
                             print("UNABLE TO SAVE TO DATA")
@@ -98,6 +100,7 @@ struct ExpenseHomeView: View {
             if success {
                 // Remove deleted item from folderArray
                 self.viewModel.folderArray.remove(atOffsets: offsets)
+                print("FOLDER ARRAY AFTER DELETE: \(viewModel.folderArray)")
             } else {
                 isDeleteFolderGoWrongAlert.toggle()
             }

@@ -10,7 +10,6 @@ import SwiftUI
 /**
  - viewModel.budget lúc mới vào sẽ được fetch từ DB. Default value là 0.0 khi mới tạo folder.
  */
-
 struct DetailedScreenOfExpenses: View {
     @StateObject var viewModel = DetailedScreenOfExpensesVM()
     @State var isAddButtonTapped: Bool = false
@@ -20,6 +19,8 @@ struct DetailedScreenOfExpenses: View {
     @State var isAlertShown: Bool = false
     // Trigger alert after setting new budget
     @State var isSetBudgetHit: Bool = false
+    // Trigger alert if deletion has error
+    @State var isDeleteItemNotThrough: Bool = false
     @FocusState var isBudgetTextFieldFocus: Bool
     var folderName: String
     var userID: String
@@ -36,6 +37,25 @@ struct DetailedScreenOfExpenses: View {
                             ExpenseInfoRow(nameOfExpense: expense.nameOfExpense,
                                            amountSpent: expense.amoutExpense,
                                            dateSpentMoney: dateSpendMoney)
+                            .swipeActions {
+                                // Another way to Swipe to delete
+                                // But with this, List doesn't automatically update Table UI, we have to remove the index that is deleted from the array.
+                                Button {
+                                    // delete this specific item at DB
+                                    DataManager.shared.deleteSpending(userID: userID, folderID: folderID, folderName: folderName, spendingID: expense.id) { success in
+                                        if success {
+                                            if let indexDeleted = viewModel.expenseArray.firstIndex(where: {$0.id == expense.id}) {
+                                                viewModel.expenseArray.remove(at: indexDeleted)
+                                            }
+                                        } else {
+                                            isDeleteItemNotThrough.toggle()
+                                        }
+                                    }
+                                }label: {
+                                    Text("Delete")
+                                }
+                                .tint(.red)
+                            }
                         }
                     }
                 } header: {
@@ -205,6 +225,15 @@ struct DetailedScreenOfExpenses: View {
             if let budget = viewModel.budget {
                 Text("You have setup a budget of \(budget,specifier: "%.2f")")
             }
+        }
+        .alert("Oops", isPresented: $isDeleteItemNotThrough) {
+            Button{
+               
+            } label: {
+                Text("Ok")
+            }
+        } message: {
+            Text("We are not able to delete your item at this time.\nPlease try again later.")
         }
     }
 }
