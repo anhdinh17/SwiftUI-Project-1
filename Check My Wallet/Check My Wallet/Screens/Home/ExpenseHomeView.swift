@@ -35,6 +35,17 @@ struct ExpenseHomeView: View {
                                          folderID: folderName.folderIDFromDB ?? "")
             }
             .toolbar {
+                // TIPS: if you want to place 2 buttons on the same leading or trailing,
+                // you have to use HStack inside ToolbarItem{}
+                
+                // Edit button to the left
+                ToolbarItem(placement: .topBarLeading) {
+                    // Use edit button for deletion
+                    // Thang Edit button nay ket hop voi .onDelete (SwiftUI handles)
+                    EditButton()
+                }
+                
+                // Plus button to the right
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         showAddFolderAlert.toggle()
