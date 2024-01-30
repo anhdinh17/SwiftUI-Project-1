@@ -17,40 +17,48 @@ struct ExpenseHomeView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(viewModel.folderArray) { eachFolder in
-                    NavigationLink(value: eachFolder) {
-                        Text(eachFolder.folderName ?? "")
+            VStack {
+                if viewModel.folderArray.count == 0 {
+                    Text("You don't have any folders of your spending.\nCreate one by tapping + sign.")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(Color.gray)
+                }
+
+                List {
+                    ForEach(viewModel.folderArray) { eachFolder in
+                        NavigationLink(value: eachFolder) {
+                            Text(eachFolder.folderName ?? "")
+                        }
+                    }
+                    .onDelete { indexSet in
+                        // Delete a folder in folderArray
+                        deleteFolder(at: indexSet)
                     }
                 }
-                .onDelete { indexSet in
-                    // Delete a folder in folderArray
-                    deleteFolder(at: indexSet)
+                .navigationTitle("Home")
+                .navigationDestination(for: FoldersModel.self){ folderName in
+                    DetailedScreenOfExpenses(folderName: folderName.folderName ?? "",
+                                             userID: viewModel.userID,
+                                             folderID: folderName.folderIDFromDB ?? "")
                 }
-            }
-            .navigationTitle("Home")
-            .navigationDestination(for: FoldersModel.self){ folderName in
-                DetailedScreenOfExpenses(folderName: folderName.folderName ?? "",
-                                         userID: viewModel.userID,
-                                         folderID: folderName.folderIDFromDB ?? "")
-            }
-            .toolbar {
-                // TIPS: if you want to place 2 buttons on the same leading or trailing,
-                // you have to use HStack inside ToolbarItem{}
-                
-                // Edit button to the left
-                ToolbarItem(placement: .topBarLeading) {
-                    // Use edit button for deletion
-                    // Thang Edit button nay ket hop voi .onDelete (SwiftUI handles)
-                    EditButton()
-                }
-                
-                // Plus button to the right
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showAddFolderAlert.toggle()
-                    } label: {
-                        Image(systemName: "plus")
+                .toolbar {
+                    // ---TIPS---: if you want to place 2 buttons on the same leading or trailing,
+                    // you have to use HStack inside ToolbarItem{}
+                    
+                    // Edit button to the left
+                    ToolbarItem(placement: .topBarLeading) {
+                        // Use edit button for deletion
+                        // Thang Edit button nay ket hop voi .onDelete (SwiftUI handles)
+                        EditButton()
+                    }
+                    
+                    // Plus button to the right
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            showAddFolderAlert.toggle()
+                        } label: {
+                            Image(systemName: "plus")
+                        }
                     }
                 }
             }

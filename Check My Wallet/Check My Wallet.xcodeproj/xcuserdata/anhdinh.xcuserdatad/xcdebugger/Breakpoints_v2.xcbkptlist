@@ -103,22 +103,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EFE99ADE-2DEF-42B5-9A16-9E93947AFEB1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "B511BD18-B9E7-4CD0-87F5-A55CF74C3090"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -126,8 +110,8 @@
             filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -238,8 +222,8 @@
             filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -500,22 +484,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B5E1523A-01FC-4652-82C6-BAC8FF5B1323"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "F01AF11A-03EC-44FF-A521-7ABE78305582"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -523,8 +491,8 @@
             filePath = "Check My Wallet/Screens/Detailed Screen/DetailedScreenOfExpenses.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -698,8 +666,8 @@
             filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -730,8 +698,8 @@
             filePath = "Check My Wallet/Screens/Detailed Screen/DetailedScreenOfExpenses.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -746,8 +714,8 @@
             filePath = "Check My Wallet/Screens/Detailed Screen/DetailedScreenOfExpenses.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -906,8 +874,8 @@
             filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "deleteFolder(at:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -938,8 +906,8 @@
             filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -1001,8 +969,8 @@
             filePath = "Check My Wallet/Screens/Home/ExpenseHomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>

@@ -28,6 +28,12 @@ struct DetailedScreenOfExpenses: View {
     
     var body: some View {
         VStack {
+            if viewModel.expenseArray.count == 0 {
+                Text("You don't have any expenses yet.\nCreate one by tapping + sign.")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(Color.gray)
+            }
+            
             List {
                 // Put things to Section to use Header
                 Section {
@@ -59,79 +65,82 @@ struct DetailedScreenOfExpenses: View {
                         }
                     }
                 } header: {
-                    VStack {
-                        // switch on/off => viewModel.isSetBudget = True/False
-                        Toggle(isOn: $viewModel.isSetBudget) {
-                            Text("Do you want to set a budget?")
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                        .onChange(of: viewModel.isSetBudget) { newValue in
-                            // newValue = false/true if switch is Off/On
-                            // Change value of isBudgetSet in Realtime Database
-                            DataManager.shared.updateIsBudgetSet(userID: self.userID, folderID: self.folderID, valueOfSwitch: newValue) { isBudgetSet in
-                                self.viewModel.isSetBudget = isBudgetSet
+                    // Hiện header nếu array tồn tại
+                    if viewModel.expenseArray.count > 0 {
+                        VStack {
+                            // switch on/off => viewModel.isSetBudget = True/False
+                            Toggle(isOn: $viewModel.isSetBudget) {
+                                Text("Do you want to set a budget?")
+                                    .fixedSize(horizontal: false, vertical: true)
                             }
-                        }
-                        
-                        // If switch is ON
-                        // show textField
-                        if viewModel.isSetBudget {
-                            VStack (spacing: 15) {
-                                HStack {
-                                    Spacer()
-                                    
-                                    TextField("Enter Your Budget", value: $viewModel.budget, format: .number)
-                                    // tap on textField => isBudgetTextFieldFocus = true
-                                        .focused($isBudgetTextFieldFocus)
-                                        .frame(height: 30)
-                                        .background(Color.white)
-                                        .cornerRadius(3)
-                                    // Hit Return button on keyboard
-                                        .onSubmit {
-                                            isBudgetTextFieldFocus = false
-                                        }
-                                    
-                                    Spacer()
+                            .onChange(of: viewModel.isSetBudget) { newValue in
+                                // newValue = false/true if switch is Off/On
+                                // Change value of isBudgetSet in Realtime Database
+                                DataManager.shared.updateIsBudgetSet(userID: self.userID, folderID: self.folderID, valueOfSwitch: newValue) { isBudgetSet in
+                                    self.viewModel.isSetBudget = isBudgetSet
                                 }
-                                
-                                // Set Budget button
-                                Button {
-                                    // resign textfield keyboard
-                                    isBudgetTextFieldFocus = false
-
-                                    // if budget is valid meaning that budget is > 0
-                                    if viewModel.budget ?? 0.0 > 0.0 {
-                                        // Change budget in DB
-                                        DataManager.shared.changeBudgetInFolder(userID: userID, folderID: folderID, budgetValue: viewModel.budget ?? 0.0) {
-                                            self.isBudgetTextShown = true
-                                            self.isSetBudgetHit.toggle()
-                                        }
+                            }
+                            
+                            // If switch is ON
+                            // show textField
+                            if viewModel.isSetBudget {
+                                VStack (spacing: 15) {
+                                    HStack {
+                                        Spacer()
+                                        
+                                        TextField("Enter Your Budget", value: $viewModel.budget, format: .number)
+                                        // tap on textField => isBudgetTextFieldFocus = true
+                                            .focused($isBudgetTextFieldFocus)
+                                            .frame(height: 30)
+                                            .background(Color.white)
+                                            .cornerRadius(3)
+                                        // Hit Return button on keyboard
+                                            .onSubmit {
+                                                isBudgetTextFieldFocus = false
+                                            }
+                                        
+                                        Spacer()
                                     }
-                                    //isTotalSpendingOverBudget.toggle()
-                                } label: {
-                                    Text("Set Budget")
-                                        .fontWeight(.semibold)
-                                        .foregroundColor(.white)
-                                }
-                                .frame(width: 150, height: 35)
-                                .background(Color.blue)
-                                .cornerRadius(5)
-                                
-                                // Budget Text
-                                if isBudgetTextShown || viewModel.budget ?? 0.0 > 0.0 {
-                                    // Show budget
-                                    Text("Your budget: $\((viewModel.budget) ?? 0.0, specifier: "%.2f")")
-                                        .font(.title3)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.red)
+                                    
+                                    // Set Budget button
+                                    Button {
+                                        // resign textfield keyboard
+                                        isBudgetTextFieldFocus = false
+                                        
+                                        // if budget is valid meaning that budget is > 0
+                                        if viewModel.budget ?? 0.0 > 0.0 {
+                                            // Change budget in DB
+                                            DataManager.shared.changeBudgetInFolder(userID: userID, folderID: folderID, budgetValue: viewModel.budget ?? 0.0) {
+                                                self.isBudgetTextShown = true
+                                                self.isSetBudgetHit.toggle()
+                                            }
+                                        }
+                                        //isTotalSpendingOverBudget.toggle()
+                                    } label: {
+                                        Text("Set Budget")
+                                            .fontWeight(.semibold)
+                                            .foregroundColor(.white)
+                                    }
+                                    .frame(width: 150, height: 35)
+                                    .background(Color.blue)
+                                    .cornerRadius(5)
+                                    
+                                    // Budget Text
+                                    if isBudgetTextShown || viewModel.budget ?? 0.0 > 0.0 {
+                                        // Show budget
+                                        Text("Your budget: $\((viewModel.budget) ?? 0.0, specifier: "%.2f")")
+                                            .font(.title3)
+                                            .fontWeight(.medium)
+                                            .foregroundColor(.red)
+                                    }
                                 }
                             }
+                            
+                            // Total spending
+                            Text("Total Spending: $\(viewModel.totalSpending, specifier: "%.2f")")
+                                .font(.title3)
+                                .fontWeight(.medium)
                         }
-                        
-                        // Total spending
-                        Text("Total Spending: $\(viewModel.totalSpending, specifier: "%.2f")")
-                            .font(.title3)
-                            .fontWeight(.medium)
                     }
                 } footer: {
                     if viewModel.expenseArray.count > 0 {
