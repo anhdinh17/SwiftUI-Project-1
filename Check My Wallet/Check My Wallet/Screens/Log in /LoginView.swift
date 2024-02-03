@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @StateObject var viewModel = LoginViewModel()
+    @State var isErrorAlert: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -36,9 +37,16 @@ struct LoginView: View {
                     .padding(.bottom, 10)
                     
                     Button {
-                        viewModel.login()
+                        viewModel.login { success in
+                            if success {
+                                // Tu dong chuyen sang Main View
+                                // Nhin giai thich o duoi
+                            } else {
+                                
+                            }
+                        }
                         /**
-                         - Khi login thanh cong -> users signed in -> trong MainView, viewModel.currentUserID not empty AND viewModel.IsSignedIn = true -> hien man hinh minh muon
+                         - Khi login thanh cong -> user signed in -> trong MainView, viewModel.currentUserID not empty AND viewModel.IsSignedIn = true -> hien man hinh minh muon
                          */
                     } label: {
                         Text("Sign In")
@@ -54,6 +62,15 @@ struct LoginView: View {
                 .offset(y: -100)
             }
             .navigationTitle("Log In")
+        }
+        .alert("Oops", isPresented: $isErrorAlert) {
+            Button {
+                
+            } label: {
+                Text("OK")
+            }
+        } message: {
+            Text("\(viewModel.errorMessage)")
         }
     }
 }

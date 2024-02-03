@@ -17,8 +17,6 @@ struct Check_My_WalletApp: App {
     
     var body: some Scene {
         WindowGroup {
-            //ExpenseHomeView()
-            //LoginView()
             MainView()
         }
     }
