@@ -54,6 +54,9 @@ struct DetailedScreenOfExpenses: View {
                                         if success {
                                             if let indexDeleted = viewModel.expenseArray.firstIndex(where: {$0.id == expense.id}) {
                                                 viewModel.expenseArray.remove(at: indexDeleted)
+                                                //Recalculate total spending to update UI
+                                                viewModel.totalSpending = SpendingDataController.shared.calculateTotalSpending(arrayOfSepnding: self.viewModel
+                                                    .expenseArray)
                                             }
                                         } else {
                                             isDeleteItemNotThrough.toggle()
@@ -169,6 +172,7 @@ struct DetailedScreenOfExpenses: View {
                     }
                 }
             }
+            .navigationTitle(folderName)
         }
         .onAppear{
             // Mới vô thì lấy array từ DB.

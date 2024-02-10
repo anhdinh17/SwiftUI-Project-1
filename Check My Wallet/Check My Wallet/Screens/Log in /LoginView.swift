@@ -32,7 +32,7 @@ struct LoginView: View {
 
                     NavigationLink(destination: SignUpView()) {
                         Text("Don't have an account? Sign up")
-                            .frame(width: 260, height: 40)
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 30, maxHeight: 30)
                     }
                     .padding(.bottom, 10)
                     
