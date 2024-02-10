@@ -22,6 +22,8 @@ struct DetailedScreenOfExpenses: View {
     // Trigger alert if deletion has error
     @State var isDeleteItemNotThrough: Bool = false
     @FocusState var isBudgetTextFieldFocus: Bool
+    // Dardk mode or light mode
+    @Environment(\.colorScheme) var colorScheme
     var folderName: String
     var userID: String
     var folderID: String
@@ -92,8 +94,11 @@ struct DetailedScreenOfExpenses: View {
                                         // tap on textField => isBudgetTextFieldFocus = true
                                             .focused($isBudgetTextFieldFocus)
                                             .frame(height: 30)
-                                            .background(Color.white)
                                             .cornerRadius(3)
+                                            .overlay(content: {
+                                                RoundedRectangle(cornerRadius: 3)
+                                                    .stroke(colorScheme == .dark ? Color.white : Color.black, lineWidth: 1)
+                                            })
                                         // Hit Return button on keyboard
                                             .onSubmit {
                                                 isBudgetTextFieldFocus = false

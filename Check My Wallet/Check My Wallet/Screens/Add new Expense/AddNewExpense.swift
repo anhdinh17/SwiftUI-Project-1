@@ -36,7 +36,7 @@ struct AddNewExpense: View {
                 
                 TextField("Amount", text: $viewModel.amountSpent)
                     .textFieldStyle(PlainTextFieldStyle())
-                    .keyboardType(.numberPad)
+                    .keyboardType(.numbersAndPunctuation)
                 
                 // "selection" la 1 Date type
                 DatePicker("Date you spend on",
