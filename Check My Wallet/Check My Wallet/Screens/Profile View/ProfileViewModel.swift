@@ -12,6 +12,7 @@ import FirebaseDatabase
 
 class ProfileViewModel: ObservableObject {
     @Published var userImage: UIImage?
+    @Published var errorMessage: String = ""
     
     func signOut() {
         do {
@@ -93,4 +94,24 @@ class ProfileViewModel: ObservableObject {
             }
         }
     }
+    
+    // Delete account
+    func deleteAccount(completion: @escaping (Bool) -> Void) {
+        let user = Auth.auth().currentUser
+        user?.delete(completion: { [weak self] error in
+            if error == nil {
+                // completion here
+                completion(true)
+            } else {
+                // Error handle
+                if let errorMessage = error?.localizedDescription {
+                    self?.errorMessage = errorMessage
+                } else {
+                    self?.errorMessage = "Something wrong, please try again later."
+                }
+                completion(false)
+            }
+        })
+    }
+    
 }

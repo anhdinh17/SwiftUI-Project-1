@@ -24,12 +24,12 @@ struct ProfileView: View {
     // The reason why we store the image as an UIImage object is that the image returned from the photo library also has a type of UIImage.
     @State private var userImage = UIImage(systemName: "person.circle")!
     @State var isSaveButtonDisabled: Bool = true
+    @State var isConfirmationOfDeletionAlert: Bool = false
+    @State var isErrorOfDelettionAlert: Bool = false
     
     var body: some View {
         NavigationStack {
             VStack {
-                // Check if user is signed in
-                //            if viewModel.isSignedIn {
                 VStack(spacing: -10) {
                     Image(uiImage: userImage)
                         .resizable()
@@ -61,18 +61,21 @@ struct ProfileView: View {
                     }
                                    .padding(.top, -20)
                 }
-                
 
-                
                 Spacer()
                 
                 StandardButton(title: "Sign Out",
                                backgroundColor: .red) {
                     viewModel.signOut()
                 }
-                //            } else {
-                //                Text("Please make sure you have signed in.")
-                //            }
+                
+                Button {
+                    isConfirmationOfDeletionAlert.toggle()
+                } label: {
+                    Text("Delete Account")
+                        .foregroundStyle(Color.red)
+                }
+                .frame(width: 200, height: 35)
             }
             .navigationTitle("Profile")
             .toolbar {
@@ -129,6 +132,41 @@ struct ProfileView: View {
             case .camera:
                 ImagePicker(sourceType: .camera, selectedImage: $userImage, isSaveButtonDisabled: $isSaveButtonDisabled).ignoresSafeArea()
             }
+        }
+        // Alert of deletion confirmation
+        .alert("Attention", isPresented: $isConfirmationOfDeletionAlert) {
+            Button {
+                // Delete account
+                viewModel.deleteAccount { success in
+                    if success {
+                        // if delete is completed, navigate to Login screen
+                        NavigationLink(destination: LoginView()) {
+                            // Nothing here
+                        }
+                    } else {
+                        
+                    }
+                }
+            } label: {
+                Text("Yes")
+            }
+            Button {
+               
+            } label: {
+                Text("Cancel")
+            }
+        } message: {
+            Text("Are you sure you want to delete this account?")
+        }
+        // Alert of not able to delete the account
+        .alert("Sorry", isPresented: $isErrorOfDelettionAlert) {
+            Button {
+                
+            } label: {
+                Text("OK")
+            }
+        } message: {
+            Text(viewModel.errorMessage)
         }
     }
 }
